@@ -12,7 +12,7 @@ export default class Player extends Character {
 
     this.sprite.setTexture(ASSETS.PLAYER, 4)
 
-    this.keys = scene.input.keyboard.createCursorKeys()
+    this.keys = scene.input.keyboard.addKeys('W,S,A,D,up,down,left,right')
   }
 
   freeze() {
@@ -27,21 +27,17 @@ export default class Player extends Character {
 
     // Stop any previous movement from the last frame
     sprite.body.setVelocity(0)
-
-    // Normalize and scale the velocity so that sprite can't move faster along a diagonal
-    sprite.body.velocity.normalize().scale(speed)
-
     // Update the animation last and give left/right/down animations precedence over up animations
-    if (keys.down.isDown) {
+    if (keys.down.isDown || keys.S.isDown) {
       sprite.body.setVelocityY(speed)
       sprite.anims.play(ASSETS.PLAYER_WALK_DOWN, true)
-    } else if (keys.up.isDown) {
+    } else if (keys.up.isDown || keys.W.isDown) {
       sprite.body.setVelocityY(-speed)
       sprite.anims.play(ASSETS.PLAYER_WALK_UP, true)
-    } else if (keys.left.isDown) {
+    } else if (keys.left.isDown || keys.A.isDown) {
       sprite.body.setVelocityX(-speed)
       sprite.anims.play(ASSETS.PLAYER_WALK_LEFT, true)
-    } else if (keys.right.isDown) {
+    } else if (keys.right.isDown || keys.D.isDown) {
       sprite.body.setVelocityX(speed)
       sprite.anims.play(ASSETS.PLAYER_WALK_RIGHT, true)
     } else {

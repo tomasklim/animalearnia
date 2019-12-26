@@ -2,6 +2,7 @@ import 'phaser'
 import Player from '../game-objects/Player'
 import { AbstractScene } from './AbstractScene'
 import * as SCENES from '../constants/scenes'
+import QuestGiver from '../game-objects/QuestGiver'
 
 export default class Scene extends AbstractScene {
   constructor() {
@@ -22,9 +23,11 @@ export default class Scene extends AbstractScene {
 
     this.player = new Player(
       this,
-      map.widthInPixels - 60,
+      map.widthInPixels - 100,
       map.heightInPixels - 210
     )
+
+    this.questGiver = new QuestGiver(this, 730, 1140)
 
     this.physics.add.collider(this.player.sprite, worldLayer)
     this.physics.add.collider(this.player.sprite, objectsLayer)
@@ -51,5 +54,6 @@ export default class Scene extends AbstractScene {
 
   update() {
     this.player.update()
+    this.questGiver.update()
   }
 }

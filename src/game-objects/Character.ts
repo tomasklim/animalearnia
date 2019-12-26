@@ -4,7 +4,7 @@ import { AbstractScene } from '../scenes/AbstractScene'
 export abstract class Character {
   protected scene: AbstractScene
   public sprite: any
-  public keys: Phaser.Types.Input.Keyboard.CursorKeys
+  public keys: any
 
   constructor(scene: AbstractScene, x: number, y: number) {
     this.scene = scene

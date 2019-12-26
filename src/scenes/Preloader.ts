@@ -23,6 +23,15 @@ export class Preloader extends Phaser.Scene {
       }
     )
 
+    this.load.spritesheet(
+      ASSETS.QUEST_GIVER,
+      '../../assets/sprites/quest-giver-64px.png',
+      {
+        frameWidth: 64,
+        frameHeight: 64
+      }
+    )
+
     this.load.image('zoo_tiles', '../../assets/environment/zoo_image.png')
     this.load.tilemapTiledJSON(
       'map',
