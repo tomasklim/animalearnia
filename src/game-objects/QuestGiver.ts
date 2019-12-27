@@ -3,7 +3,7 @@ import { Character } from './Character'
 
 export default class QuestGiver extends Character {
   public spriteType = ASSETS.QUEST_GIVER_NEW_QUEST
-  private spacebar
+  private spacebar: Phaser.Input.Keyboard.Key
 
   constructor(scene, x, y) {
     super(scene, x, y)
@@ -11,8 +11,6 @@ export default class QuestGiver extends Character {
     this.sprite = scene.physics.add
       .sprite(x, y, ASSETS.QUEST_GIVER, this.spriteType)
       .setSize(38, 20)
-
-    this.sprite.setTexture(ASSETS.QUEST_GIVER, 0)
 
     this.sprite.setInteractive()
     this.sprite.on('pointerdown', () => this.talk())

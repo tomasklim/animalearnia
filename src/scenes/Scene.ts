@@ -21,13 +21,27 @@ export default class Scene extends AbstractScene {
     const objectsLayer = map.createStaticLayer('Objects', tileset, 0, 0)
     const peopleLayer = map.createStaticLayer('People', tileset, 0, 0)
 
+    const interactiveAreas = map
+      .createFromObjects('Areas', 'area', {
+        alpha: 0.1
+      })
+      .map(area => area.setY(area.y + area.displayHeight))
+      .map(area =>
+        this.physics.add
+          .image(area.x, area.y, 'area')
+          .setVisible(false)
+          .setSize(area.displayWidth, area.displayHeight)
+          .setName(area.data.list[0].value)
+      )
+
     worldLayer.setCollisionByProperty({ collider: true })
     objectsLayer.setCollisionByProperty({ collider: true })
 
     this.player = new Player(
       this,
       map.widthInPixels - 100,
-      map.heightInPixels - 210
+      map.heightInPixels - 210,
+      interactiveAreas
     )
 
     this.questGiver = new QuestGiver(this, 730, 1140)

@@ -2,7 +2,8 @@ import * as ASSETS from '../constants/assets'
 import { Character } from './Character'
 
 export default class Player extends Character {
-  constructor(scene, x, y) {
+  public areas: any
+  constructor(scene, x, y, areas) {
     super(scene, x, y)
 
     this.sprite = scene.physics.add
@@ -12,11 +13,18 @@ export default class Player extends Character {
 
     this.sprite.setTexture(ASSETS.PLAYER, 4)
 
-    this.keys = scene.input.keyboard.addKeys('W,S,A,D,up,down,left,right')
+    this.keys = scene.input.keyboard.addKeys('W,S,A,D,up,down,left,right,space')
+    this.areas = areas
   }
 
   freeze() {
     this.sprite.body.moves = false
+  }
+
+  findCollisionArea() {
+    return this.areas.find(area =>
+      this.scene.physics.overlap(this.sprite, area)
+    )
   }
 
   update() {
@@ -24,6 +32,13 @@ export default class Player extends Character {
     const sprite = this.sprite
     const speed = 300
     const prevVelocity = sprite.body.velocity.clone()
+
+    if (Phaser.Input.Keyboard.JustDown(keys.space)) {
+      const collisionArea = this.findCollisionArea()
+      if (collisionArea) {
+        console.log(collisionArea.name)
+      }
+    }
 
     // Stop any previous movement from the last frame
     sprite.body.setVelocity(0)

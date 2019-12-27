@@ -1,6 +1,6 @@
 import 'phaser'
 
-export default class LevelBar extends Phaser.GameObjects.GameObject {
+export default class Animal extends Phaser.GameObjects.GameObject {
   private animal: string
   private object: any
 
@@ -9,5 +9,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     this.animal = animal
 
     this.object = scene.physics.add.image(x, y, animal)
+    this.object.setInteractive()
+    this.object.on('pointerdown', () => console.log(animal))
   }
 }
