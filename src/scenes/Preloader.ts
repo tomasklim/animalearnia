@@ -3,6 +3,10 @@ import * as SCENES from '../constants/scenes'
 import * as ASSETS from '../constants/assets'
 
 export class Preloader extends Phaser.Scene {
+  constructor() {
+    super(SCENES.PRELOADER)
+  }
+
   protected preload() {
     this.loadAssets()
   }

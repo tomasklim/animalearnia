@@ -3,6 +3,7 @@ import { Character } from './Character'
 
 export default class QuestGiver extends Character {
   public spriteType = ASSETS.QUEST_GIVER_NEW_QUEST
+  private spacebar
 
   constructor(scene, x, y) {
     super(scene, x, y)
@@ -16,20 +17,18 @@ export default class QuestGiver extends Character {
     this.sprite.setInteractive()
     this.sprite.on('pointerdown', () => this.talk())
 
-    this.keys = scene.input.keyboard.addKeys('SPACE')
+    this.spacebar = scene.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    )
   }
 
   update() {
-    if (this.keys.SPACE.isDown) {
+    if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
       this.talk()
     }
   }
 
   talk() {
-    /* console.log(
-      Math.abs(this.scene.player.sprite.x - this.sprite.x),
-      Math.abs(this.scene.player.sprite.y - this.sprite.y)
-    ) */
     if (
       Math.abs(this.scene.player.sprite.x - this.sprite.x) < 60 &&
       Math.abs(this.scene.player.sprite.y - this.sprite.y) < 30

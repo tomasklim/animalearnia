@@ -3,6 +3,7 @@ import Player from '../game-objects/Player'
 import { AbstractScene } from './AbstractScene'
 import * as SCENES from '../constants/scenes'
 import QuestGiver from '../game-objects/QuestGiver'
+import LevelBar from '../game-objects/LevelBar'
 
 export default class Scene extends AbstractScene {
   constructor() {
@@ -50,6 +51,7 @@ export default class Scene extends AbstractScene {
     camera.setBackgroundColor('#27ae60')
     camera.startFollow(this.player.sprite)
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+    this.levelBar = new LevelBar(this, 1)
   }
 
   update() {
