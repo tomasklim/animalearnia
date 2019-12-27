@@ -2,8 +2,10 @@ import 'phaser'
 import Player from '../game-objects/Player'
 import { AbstractScene } from './AbstractScene'
 import * as SCENES from '../constants/scenes'
+import * as ASSETS from '../constants/assets'
 import QuestGiver from '../game-objects/QuestGiver'
 import LevelBar from '../game-objects/LevelBar'
+import Animal from '../game-objects/Animal'
 
 export default class Scene extends AbstractScene {
   constructor() {
@@ -51,7 +53,17 @@ export default class Scene extends AbstractScene {
     camera.setBackgroundColor('#27ae60')
     camera.startFollow(this.player.sprite)
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+
     this.levelBar = new LevelBar(this, 1)
+
+    this.animals.set(ASSETS.GIRAFFE, new Animal(this, ASSETS.GIRAFFE, 670, 290))
+    this.animals.set(
+      ASSETS.ELEPHANT,
+      new Animal(this, ASSETS.ELEPHANT, 990, 950)
+    )
+    this.animals.set(ASSETS.LION, new Animal(this, ASSETS.LION, 960, 570))
+    this.animals.set(ASSETS.ZEBRA, new Animal(this, ASSETS.ZEBRA, 280, 530))
+    this.animals.set(ASSETS.TIGER, new Animal(this, ASSETS.TIGER, 305, 960))
   }
 
   update() {
