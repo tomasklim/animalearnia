@@ -8,8 +8,6 @@ export default class Animal extends Phaser.GameObjects.GameObject {
     super(scene, animal)
     this.animal = animal
 
-    this.object = scene.physics.add.image(x, y, animal)
-    this.object.setInteractive()
-    this.object.on('pointerdown', () => console.log(animal))
+    this.object = scene.physics.add.image(x, y, this.animal)
   }
 }

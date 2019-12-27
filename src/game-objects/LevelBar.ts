@@ -11,6 +11,11 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     super(scene, 'LevelBar')
 
     this.level = level
+
+    this.init()
+  }
+
+  private init() {
     this.createLevelBar()
       .glueElements()
       .toggleVisibility(true)
@@ -47,7 +52,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
 
     this.textLevelNumber = this.scene.add.text(
       260,
-      halfHeight - 34,
+      halfHeight - 30,
       `${this.level}`,
       {
         ...{ fontSize: 90 }
@@ -95,7 +100,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.textLevelNumber,
-      x: 230
+      x: 235
     })
 
     return this

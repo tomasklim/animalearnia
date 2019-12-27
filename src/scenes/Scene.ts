@@ -3,6 +3,7 @@ import Player from '../game-objects/Player'
 import { AbstractScene } from './AbstractScene'
 import * as SCENES from '../constants/scenes'
 import * as ASSETS from '../constants/assets'
+import * as CONFIG from '../constants/config'
 import QuestGiver from '../game-objects/QuestGiver'
 import LevelBar from '../game-objects/LevelBar'
 import Animal from '../game-objects/Animal'
@@ -23,12 +24,11 @@ export default class Scene extends AbstractScene {
 
     const interactiveAreas = map
       .createFromObjects('Areas', 'area', {
-        alpha: 0.1
+        alpha: 0
       })
-      .map(area => area.setY(area.y + area.displayHeight))
       .map(area =>
         this.physics.add
-          .image(area.x, area.y, 'area')
+          .image(area.x, area.y + area.displayHeight, 'area')
           .setVisible(false)
           .setSize(area.displayWidth, area.displayHeight)
           .setName(area.data.list[0].value)
@@ -64,7 +64,7 @@ export default class Scene extends AbstractScene {
     */
 
     const camera = this.cameras.main
-    camera.setBackgroundColor('#27ae60')
+    camera.setBackgroundColor(CONFIG.BACKGROUND_COLOR)
     camera.startFollow(this.player.sprite)
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
 
