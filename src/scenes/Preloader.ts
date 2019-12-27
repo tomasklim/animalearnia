@@ -3,6 +3,10 @@ import * as SCENES from '../constants/scenes'
 import * as ASSETS from '../constants/assets'
 
 export class Preloader extends Phaser.Scene {
+  constructor() {
+    super(SCENES.PRELOADER)
+  }
+
   protected preload() {
     this.loadAssets()
   }
@@ -37,6 +41,12 @@ export class Preloader extends Phaser.Scene {
       'map',
       '../../assets/environment/zoo_map_20x25.json'
     )
+
+    this.load.image(ASSETS.TIGER, '../../assets/animals/tiger.png')
+    this.load.image(ASSETS.ELEPHANT, '../../assets/animals/elephant.png')
+    this.load.image(ASSETS.LION, '../../assets/animals/lion.png')
+    this.load.image(ASSETS.ZEBRA, '../../assets/animals/zebra.png')
+    this.load.image(ASSETS.GIRAFFE, '../../assets/animals/giraffe.png')
   }
 
   private createAnims() {

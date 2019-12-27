@@ -1,5 +1,7 @@
 import 'phaser'
 import { Preloader } from './scenes/Preloader'
+import { Menu } from './scenes/Menu'
+
 import Scene from './scenes/Scene'
 
 class PhaserGame extends Phaser.Game {
@@ -10,7 +12,7 @@ class PhaserGame extends Phaser.Game {
       height: 600,
       parent: 'app',
       pixelArt: true,
-      scene: [Preloader, Scene],
+      scene: [Menu, Preloader, Scene],
       physics: {
         default: 'arcade',
         arcade: {
