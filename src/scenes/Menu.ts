@@ -4,11 +4,18 @@ import * as SCENES from '../constants/scenes'
 export class Menu extends Phaser.Scene {
   public playButton: any
 
+  protected preload() {
+    this.load.image('menu', '../../assets/scenes/menu.png')
+  }
+
   protected create() {
+    this.add.image(0, 0, 'menu').setOrigin(0)
+
     this.playButton = this.add
-      .text(this.cameras.main.centerX, this.cameras.main.centerY, 'PLAY', {
-        fill: '#000',
-        fontSize: '30px'
+      .text(340, 280, 'PLAY', {
+        fill: '#f68a24',
+        fontSize: '60px',
+        fontFamily: '"Acumin Pro"'
       })
       .setInteractive()
       .on('pointerdown', () => this.play())
@@ -16,15 +23,14 @@ export class Menu extends Phaser.Scene {
       .on('pointerout', () => this.enterButtonRestState())
 
     const camera = this.cameras.main
-    camera.setBackgroundColor('#27ae60')
   }
 
   enterButtonRestState() {
-    this.playButton.setStyle({ fill: '#000' })
+    this.playButton.setStyle({ fill: '#f68a24' })
   }
 
   enterButtonHoverState() {
-    this.playButton.setStyle({ fill: '#fff' })
+    this.playButton.setStyle({ fill: '#ecc66a' })
   }
 
   play() {

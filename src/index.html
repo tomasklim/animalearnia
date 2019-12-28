@@ -3,9 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      @font-face {
+        font-family: 'Acumin Pro';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Acumin Pro'),
+          url('assets/fonts/Acumin-Pro.woff') format('woff');
+      }
+    </style>
   </head>
 
   <body style="margin: 0; height: 100vh; background-color: black">
+    <div
+      style="font-family: Acumin Pro; position: absolute; left: -1000px;visibility: hidden;"
+    >
+      .
+    </div>
     <div
       style="display: flex; align-items: center; justify-content: center; height: 100%;"
     >
