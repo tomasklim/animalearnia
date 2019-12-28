@@ -1,7 +1,7 @@
 {
-  "name": "phaser-zoo-game",
+  "name": "Animalearnia",
   "version": "1.0.0",
-  "description": "Game based e-learning game. Find the animals in the Zoo.",
+  "description": "RPG level based game where the objective of each level is to learn different types of animals. The game uses game based learning principles.",
   "main": "index.js",
   "scripts": {
     "build": "webpack -p",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomasklim/phaser-zoo-game.git"
+    "url": "git+https://github.com/tomasklim/animalearnia.git"
   },
   "keywords": [
     "phaser",
@@ -21,9 +21,9 @@
   "author": "Tomáš Klíma",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tomasklim/phaser-zoo-game/issues"
+    "url": "https://github.com/tomasklim/animalearnia/issues"
   },
-  "homepage": "https://github.com/tomasklim/phaser-zoo-game#readme",
+  "homepage": "https://github.com/tomasklim/animalearnia#readme",
   "dependencies": {
     "phaser": "^3.21.0"
   },
