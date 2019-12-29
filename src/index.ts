@@ -2,7 +2,7 @@ import 'phaser'
 import { Preloader } from './scenes/Preloader'
 import { Menu } from './scenes/Menu'
 
-import Scene from './scenes/Scene'
+import Level1 from './scenes/Level1'
 
 class PhaserGame extends Phaser.Game {
   constructor() {
@@ -12,7 +12,7 @@ class PhaserGame extends Phaser.Game {
       height: 600,
       parent: 'app',
       pixelArt: true,
-      scene: [Menu, Preloader, Scene],
+      scene: [Menu, Preloader, Level1],
       physics: {
         default: 'arcade',
         arcade: {

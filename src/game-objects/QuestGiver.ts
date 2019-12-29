@@ -15,13 +15,8 @@ export default class QuestGiver extends Character {
     )
   }
 
-  update() {}
-
-  talk() {
-    console.log('Hey man!')
-  }
-
   changeSpriteType = spriteType => {
+    this.spriteType = spriteType
     switch (spriteType) {
       case ASSETS.QUEST_GIVER_NEW_QUEST:
         this.sprite.setTexture(ASSETS.QUEST_GIVER, ASSETS.QUEST_GIVER_NEW_QUEST)
@@ -37,6 +32,9 @@ export default class QuestGiver extends Character {
           ASSETS.QUEST_GIVER,
           ASSETS.QUEST_GIVER_COMPLETE_QUEST
         )
+        break
+      case ASSETS.QUEST_GIVER_NO_QUEST:
+        this.sprite.setTexture(ASSETS.QUEST_GIVER, ASSETS.QUEST_GIVER_NO_QUEST)
         break
     }
   }

@@ -4,17 +4,20 @@ import { Character } from './Character'
 
 export default class Player extends Character {
   public interactiveAreas: any
+  public quest: any
 
   constructor(
     scene,
     x: number,
     y: number,
-    interactiveAreas: Phaser.Physics.Arcade.Image[]
+    interactiveAreas: Phaser.Physics.Arcade.Image[],
+    quest
   ) {
     super(scene, x, y)
 
     this.interactiveAreas = interactiveAreas
     this.scene = scene
+    this.quest = quest
 
     this.sprite = this.scene.physics.add
       .sprite(this.x, this.y, ASSETS.PLAYER)
@@ -63,10 +66,47 @@ export default class Player extends Character {
       }
     }
 
-    if (Phaser.Input.Keyboard.JustDown(keys.space)) {
+    if (
+      Phaser.Input.Keyboard.JustDown(keys.space) &&
+      this.quest.state < this.quest.tasks.length
+    ) {
       const collisionArea = this.findCollisionArea()
+
       if (collisionArea) {
-        console.log(collisionArea.name)
+        const currentQuest = this.quest.tasks[this.quest.state]
+
+        if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
+          this.quest.state++
+          if (this.quest.state === this.quest.tasks.length) {
+            this.scene.questGiver.changeSpriteType(ASSETS.QUEST_GIVER_NO_QUEST)
+          } else {
+            this.scene.questGiver.changeSpriteType(
+              ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
+            )
+          }
+        } else if (
+          typeof currentQuest.goalTarget === 'object' &&
+          collisionArea.name != ASSETS.QUEST_GIVER
+        ) {
+          currentQuest.goalTarget = currentQuest.goalTarget.filter(
+            goalTarget => goalTarget !== collisionArea.name
+          )
+          if (!currentQuest.goalTarget.length) {
+            currentQuest.complete = true
+            this.scene.questGiver.changeSpriteType(
+              ASSETS.QUEST_GIVER_COMPLETE_QUEST
+            )
+          }
+        } else if (currentQuest.goalTarget == collisionArea.name) {
+          currentQuest.complete = true
+          this.scene.questGiver.changeSpriteType(
+            ASSETS.QUEST_GIVER_COMPLETE_QUEST
+          )
+        } else {
+          if (collisionArea.name !== ASSETS.QUEST_GIVER) {
+            this.quest.errors++
+          }
+        }
       }
     }
   }

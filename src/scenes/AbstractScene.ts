@@ -7,6 +7,8 @@ export abstract class AbstractScene extends Phaser.Scene {
   public player: Player
   public questGiver: QuestGiver
   public levelBar: any
+  public quest: any
+  public questBar: any
   public animals: Map<string, Animal>
 
   constructor(key: string) {
