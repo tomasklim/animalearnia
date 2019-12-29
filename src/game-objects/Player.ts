@@ -91,6 +91,7 @@ export default class Player extends Character {
           currentQuest.goalTarget = currentQuest.goalTarget.filter(
             goalTarget => goalTarget !== collisionArea.name
           )
+          currentQuest.goalStatus++
           if (!currentQuest.goalTarget.length) {
             currentQuest.complete = true
             this.scene.questGiver.changeSpriteType(
@@ -99,6 +100,7 @@ export default class Player extends Character {
           }
         } else if (currentQuest.goalTarget == collisionArea.name) {
           currentQuest.complete = true
+          currentQuest.goalStatus++
           this.scene.questGiver.changeSpriteType(
             ASSETS.QUEST_GIVER_COMPLETE_QUEST
           )

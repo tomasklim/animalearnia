@@ -5,9 +5,11 @@ export default class Task {
   public questGiverText: string
   public questCompleteText: string
   public sound: any
-  public goalTarget: string
+  public goalTarget: string | []
   public giver: string
   public complete: boolean
+  public goalStatus: number
+  public goalTotal: number
 
   constructor(
     objective,
@@ -25,5 +27,8 @@ export default class Task {
     this.giver = giver
     this.sound = sound
     this.complete = complete
+    this.goalStatus = 0
+    this.goalTotal =
+      typeof this.goalTarget === 'object' ? this.goalTarget.length : 1
   }
 }
