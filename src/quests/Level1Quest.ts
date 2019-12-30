@@ -12,7 +12,7 @@ export default class Level1Quest extends AbstractQuest {
   defineQuests() {
     this.tasks.push(
       new Task(
-        'Meet Quest Giver',
+        'Meet the Quest Giver',
         '',
         'Welcome in Zoo!',
         ASSETS.QUEST_GIVER,
@@ -23,8 +23,8 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'See All Animals',
-        'See all the animals here',
+        'See all the Animals',
+        'Welcome in Zoo!\nLook around here.',
         'Good work!',
         ASSETS.QUEST_GIVER,
         [
@@ -39,9 +39,9 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'Feed Elephant',
-        'Elephant is hungry\n Feed him',
-        'Nice!',
+        'Feed the Elephant',
+        'Elephant is hungry.\nPlease feed him!',
+        'Nicely done!',
         ASSETS.QUEST_GIVER,
         ASSETS.ELEPHANT,
         null
@@ -49,8 +49,8 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'Wave at Lion',
-        'Lion likes people\n Greet him',
+        'Wave at the Lion',
+        'Lion likes people.\nSay him hello!',
         'Perfect!',
         ASSETS.QUEST_GIVER,
         ASSETS.LION,
@@ -59,9 +59,9 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'Check Zebra',
-        'Zebra was sick\n Check her',
-        'Uff thank you!',
+        'Check the Zebra',
+        'Zebra was sick.\nCheck her health!',
+        'Uff, thank you!',
         ASSETS.QUEST_GIVER,
         ASSETS.ZEBRA,
         null
@@ -69,8 +69,8 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'Feed Tiger',
-        'There is a meat\n Feed Tiger',
+        'Feed the Tiger',
+        'There is a meat.\nFeed the Tiger!',
         'Good job!',
         ASSETS.QUEST_GIVER,
         ASSETS.TIGER,
@@ -79,9 +79,9 @@ export default class Level1Quest extends AbstractQuest {
     )
     this.tasks.push(
       new Task(
-        'Check Giraffe',
-        'Check Giraffe\n She is pregnant',
-        'Congratulations!',
+        'Check the Giraffe',
+        'Check the Giraffe.\nShe is pregnant.',
+        'Last one!',
         ASSETS.QUEST_GIVER,
         ASSETS.GIRAFFE,
         null

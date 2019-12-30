@@ -1,5 +1,6 @@
 import * as ASSETS from '../constants/assets'
 import { Character } from './Character'
+import SpeechBubble from './SpeechBubble'
 
 export default class QuestGiver extends Character {
   private spriteType = ASSETS.QUEST_GIVER_NEW_QUEST
@@ -37,5 +38,9 @@ export default class QuestGiver extends Character {
         this.sprite.setTexture(ASSETS.QUEST_GIVER, ASSETS.QUEST_GIVER_NO_QUEST)
         break
     }
+  }
+
+  talk(text, width) {
+    new SpeechBubble(this.scene, 730, 1045, width, 70, text)
   }
 }

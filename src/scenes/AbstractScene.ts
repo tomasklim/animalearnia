@@ -10,6 +10,7 @@ export abstract class AbstractScene extends Phaser.Scene {
   public quest: any
   public questBar: any
   public animals: Map<string, Animal>
+  public complete: boolean
 
   constructor(key: string) {
     super(key)
@@ -17,5 +18,6 @@ export abstract class AbstractScene extends Phaser.Scene {
     this.player = null
     this.questGiver = null
     this.animals = new Map()
+    this.complete = false
   }
 }

@@ -6,6 +6,7 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
   private questText: Phaser.GameObjects.Text
   private questCounter: Phaser.GameObjects.Text
   private questStatus: Phaser.GameObjects.Text
+  private errorsCounter: Phaser.GameObjects.Text
 
   constructor(scene: Phaser.Scene, quest) {
     super(scene, 'QuestBar')
@@ -20,19 +21,19 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
 
   private createLevelBar() {
     this.questBar = this.scene.add
-      .rectangle(590, 10, 200, 80, 0xffffff, 1)
+      .rectangle(570, 10, 220, 80, 0xffffff, 1)
       .setStrokeStyle(2, 0x000)
       .setOrigin(0)
 
     this.questText = this.scene.add.text(
-      600,
+      580,
       20,
       this.quest.tasks[this.quest.state].objective,
       { color: '#000' }
     )
 
     this.questCounter = this.scene.add.text(
-      600,
+      580,
       40,
       `${this.quest.tasks[this.quest.state].goalStatus} / ${
         this.quest.tasks[this.quest.state].goalTotal
@@ -42,7 +43,11 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
       }
     )
 
-    this.questStatus = this.scene.add.text(600, 60, 'In progress', {
+    this.errorsCounter = this.scene.add.text(700, 40, `0 Errors`, {
+      color: '#FF0000'
+    })
+
+    this.questStatus = this.scene.add.text(580, 60, 'In progress', {
       color: '#F9A602'
     })
 
@@ -50,10 +55,14 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
   }
 
   private glueElements() {
-    this.questBar.setScrollFactor(0)
-    this.questText.setScrollFactor(0)
-    this.questCounter.setScrollFactor(0)
-    this.questStatus.setScrollFactor(0)
+    this.questBar.setScrollFactor(0).setDepth(10)
+    this.questText.setScrollFactor(0).setDepth(10)
+    this.questCounter
+      .setScrollFactor(0)
+      .setDepth(10)
+      .setDepth(10)
+    this.questStatus.setScrollFactor(0).setDepth(10)
+    this.errorsCounter.setScrollFactor(0).setDepth(10)
     return this
   }
 
@@ -63,6 +72,7 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
 
       this.questText.setText(currentTask.objective)
 
+      this.errorsCounter.setText(`${this.quest.errors} Errors`)
       if (currentTask.complete) {
         this.questStatus.setText('Complete')
         this.questStatus.setColor('#116133')
@@ -81,6 +91,7 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
       this.questText.setColor('#ff0000')
       this.questStatus.setText('')
       this.questCounter.setText('')
+      this.errorsCounter.setX(580)
     }
   }
 }

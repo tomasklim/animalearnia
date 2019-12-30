@@ -71,25 +71,45 @@ export default class Player extends Character {
       const collisionArea = this.findCollisionArea()
 
       if (collisionArea) {
+        if (this.scene.animals.get(collisionArea.name)) {
+          this.scene.animals.get(collisionArea.name).talk()
+        }
+
         const currentQuest = quest.tasks[quest.state]
 
         if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
           quest.state++
           if (quest.state === quest.tasks.length) {
             this.scene.questGiver.changeSpriteType(ASSETS.QUEST_GIVER_NO_QUEST)
+            this.scene.complete = true
+            this.scene.questGiver.talk(
+              'Level 1 is complete.\n See you in level 2!',
+              240
+            )
           } else {
             this.scene.questGiver.changeSpriteType(
               ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
+            )
+            this.scene.questGiver.talk(
+              `${
+                quest.tasks[quest.state].questCompleteText
+                  ? `${quest.tasks[quest.state].questCompleteText}\n`
+                  : ''
+              }${quest.tasks[quest.state].questGiverText}`,
+              240
             )
           }
         } else if (
           typeof currentQuest.goalTarget === 'object' &&
           collisionArea.name != ASSETS.QUEST_GIVER
         ) {
+          const counter = currentQuest.goalTarget.length
           currentQuest.goalTarget = currentQuest.goalTarget.filter(
             goalTarget => goalTarget !== collisionArea.name
           )
-          currentQuest.goalStatus++
+          if (counter != currentQuest.goalTarget.length) {
+            currentQuest.goalStatus++
+          }
           if (!currentQuest.goalTarget.length) {
             currentQuest.complete = true
             this.scene.questGiver.changeSpriteType(

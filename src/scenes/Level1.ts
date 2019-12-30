@@ -9,6 +9,7 @@ import LevelBar from '../game-objects/LevelBar'
 import QuestBar from '../game-objects/QuestBar'
 import Animal from '../game-objects/Animal'
 import Level1Quest from '../quests/Level1Quest'
+import SpeechBubble from '../game-objects/SpeechBubble'
 
 export default class Level1 extends AbstractScene {
   constructor() {
@@ -62,14 +63,26 @@ export default class Level1 extends AbstractScene {
   }
 
   spawnAnimals() {
-    this.animals.set(ASSETS.GIRAFFE, new Animal(this, ASSETS.GIRAFFE, 670, 290))
+    this.animals.set(
+      ASSETS.GIRAFFE,
+      new Animal(this, ASSETS.GIRAFFE, 670, 290, 620, 215, 'I am a giraffe.')
+    )
     this.animals.set(
       ASSETS.ELEPHANT,
-      new Animal(this, ASSETS.ELEPHANT, 990, 950)
+      new Animal(this, ASSETS.ELEPHANT, 990, 950, 890, 895, 'I am an elephant.')
     )
-    this.animals.set(ASSETS.LION, new Animal(this, ASSETS.LION, 960, 570))
-    this.animals.set(ASSETS.ZEBRA, new Animal(this, ASSETS.ZEBRA, 280, 530))
-    this.animals.set(ASSETS.TIGER, new Animal(this, ASSETS.TIGER, 305, 960))
+    this.animals.set(
+      ASSETS.LION,
+      new Animal(this, ASSETS.LION, 960, 570, 910, 525, 'I am a lion.')
+    )
+    this.animals.set(
+      ASSETS.ZEBRA,
+      new Animal(this, ASSETS.ZEBRA, 280, 530, 285, 480, 'I am a zebra.')
+    )
+    this.animals.set(
+      ASSETS.TIGER,
+      new Animal(this, ASSETS.TIGER, 305, 960, 315, 920, 'I am a tiger.')
+    )
   }
 
   update() {
