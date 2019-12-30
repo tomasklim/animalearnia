@@ -4,20 +4,17 @@ import { Character } from './Character'
 
 export default class Player extends Character {
   public interactiveAreas: any
-  public quest: any
 
   constructor(
     scene,
     x: number,
     y: number,
-    interactiveAreas: Phaser.Physics.Arcade.Image[],
-    quest
+    interactiveAreas: Phaser.Physics.Arcade.Image[]
   ) {
     super(scene, x, y)
 
     this.interactiveAreas = interactiveAreas
     this.scene = scene
-    this.quest = quest
 
     this.sprite = this.scene.physics.add
       .sprite(this.x, this.y, ASSETS.PLAYER)
@@ -32,6 +29,7 @@ export default class Player extends Character {
 
   update() {
     const { keys, sprite } = this
+    const { quest } = this.scene
 
     const prevVelocity = sprite.body.velocity.clone()
 
@@ -68,16 +66,16 @@ export default class Player extends Character {
 
     if (
       Phaser.Input.Keyboard.JustDown(keys.space) &&
-      this.quest.state < this.quest.tasks.length
+      quest.state < quest.tasks.length
     ) {
       const collisionArea = this.findCollisionArea()
 
       if (collisionArea) {
-        const currentQuest = this.quest.tasks[this.quest.state]
+        const currentQuest = quest.tasks[quest.state]
 
         if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
-          this.quest.state++
-          if (this.quest.state === this.quest.tasks.length) {
+          quest.state++
+          if (quest.state === quest.tasks.length) {
             this.scene.questGiver.changeSpriteType(ASSETS.QUEST_GIVER_NO_QUEST)
           } else {
             this.scene.questGiver.changeSpriteType(
@@ -106,9 +104,11 @@ export default class Player extends Character {
           )
         } else {
           if (collisionArea.name !== ASSETS.QUEST_GIVER) {
-            this.quest.errors++
+            quest.errors++
           }
         }
+
+        this.scene.questBar.update()
       }
     }
   }

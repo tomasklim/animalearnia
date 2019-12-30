@@ -6,9 +6,6 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
   private questText: Phaser.GameObjects.Text
   private questCounter: Phaser.GameObjects.Text
   private questStatus: Phaser.GameObjects.Text
-  private currentQuestState: string
-  private currentQuestStatus: string
-  private currentQuestGoalStatus: number
 
   constructor(scene: Phaser.Scene, quest) {
     super(scene, 'QuestBar')
@@ -49,9 +46,6 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
       color: '#F9A602'
     })
 
-    this.currentQuestState = this.quest.state
-    this.currentQuestStatus = this.quest.tasks[this.quest.state].complete
-    this.currentQuestGoalStatus = this.quest.tasks[this.quest.state].goalStatus
     return this
   }
 
@@ -64,54 +58,29 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
   }
 
   update() {
-    // TODO: update from player
-    if (
-      this.currentQuestState !== this.quest.state &&
-      this.quest.state < this.quest.tasks.length
-    ) {
-      this.questText.setText(this.quest.tasks[this.quest.state].objective)
-      this.currentQuestState = this.quest.state
-    } else if (this.quest.state >= this.quest.tasks.length) {
-      this.questText.setText('No quest')
-      this.questText.setColor('#ff0000')
-      this.questStatus.setText('')
-      this.questCounter.setText('')
-    }
+    if (this.quest.state < this.quest.tasks.length) {
+      const currentTask = this.quest.tasks[this.quest.state]
 
-    if (
-      this.quest.state < this.quest.tasks.length &&
-      (this.currentQuestStatus !==
-        this.quest.tasks[this.quest.state].complete ||
-        this.quest.tasks[this.quest.state].goalStatus !==
-          this.currentQuestGoalStatus)
-    ) {
-      this.currentQuestStatus = this.quest.tasks[this.quest.state].complete
+      this.questText.setText(currentTask.objective)
 
-      if (this.currentQuestStatus) {
+      if (currentTask.complete) {
         this.questStatus.setText('Complete')
         this.questStatus.setColor('#116133')
         this.questCounter
-          .setText(
-            `${this.quest.tasks[this.quest.state].goalStatus} / ${
-              this.quest.tasks[this.quest.state].goalTotal
-            }`
-          )
+          .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
           .setColor('#116133')
       } else {
         this.questStatus.setText('In progress')
         this.questStatus.setColor('#F9A602')
         this.questCounter
-          .setText(
-            `${this.quest.tasks[this.quest.state].goalStatus} / ${
-              this.quest.tasks[this.quest.state].goalTotal
-            }`
-          )
+          .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
           .setColor('#F9A602')
       }
-
-      this.currentQuestGoalStatus = this.quest.tasks[
-        this.quest.state
-      ].goalStatus
+    } else if (this.quest.state >= this.quest.tasks.length) {
+      this.questText.setText('No quest')
+      this.questText.setColor('#ff0000')
+      this.questStatus.setText('')
+      this.questCounter.setText('')
     }
   }
 }

@@ -3,6 +3,7 @@ import * as SCENES from '../constants/scenes'
 
 export class Menu extends Phaser.Scene {
   public playButton: any
+  public spaceBar: Phaser.Input.Keyboard.Key
 
   protected preload() {
     this.load.image('menu', '../../assets/scenes/menu.png')
@@ -23,6 +24,16 @@ export class Menu extends Phaser.Scene {
       .on('pointerout', () => this.enterButtonRestState())
 
     const camera = this.cameras.main
+
+    this.spaceBar = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    )
+  }
+
+  update() {
+    if (this.spaceBar.isDown) {
+      this.play()
+    }
   }
 
   enterButtonRestState() {

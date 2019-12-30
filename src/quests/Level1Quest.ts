@@ -1,14 +1,10 @@
 import * as ASSETS from '../constants/assets'
 import Task from './Task'
+import { AbstractQuest } from './AbstractQuest'
 
-export default class Level1Quest {
-  public state: number = 0
-  public currentObjective: string
-  public tasks: Array<Task>
-  public errors: number = 0
-
+export default class Level1Quest extends AbstractQuest {
   constructor() {
-    this.tasks = []
+    super()
 
     this.defineQuests()
   }
