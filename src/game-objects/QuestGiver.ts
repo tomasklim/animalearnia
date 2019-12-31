@@ -40,7 +40,8 @@ export default class QuestGiver extends Character {
     }
   }
 
-  talk(text, width) {
+  talk(text, width, audio) {
     new SpeechBubble(this.scene, 730, 1045, width, 70, text)
+    this.scene.sound.add(audio).play()
   }
 }

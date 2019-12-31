@@ -85,7 +85,8 @@ export default class Player extends Character {
             this.scene.complete = true
             this.scene.questGiver.talk(
               'Level 1 is complete.\n See you in level 2!',
-              240
+              240,
+              ASSETS.LEVEL1_COMPLETE_AUDIO
             )
             setTimeout(() => {
               this.scene.levelBar = new LevelComplete(this.scene, 1)
@@ -94,13 +95,15 @@ export default class Player extends Character {
             this.scene.questGiver.changeSpriteType(
               ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
             )
+            console.log(quest.tasks[quest.state].sound)
             this.scene.questGiver.talk(
               `${
                 quest.tasks[quest.state].questCompleteText
                   ? `${quest.tasks[quest.state].questCompleteText}\n`
                   : ''
               }${quest.tasks[quest.state].questGiverText}`,
-              240
+              240,
+              quest.tasks[quest.state].sound
             )
           }
         } else if (

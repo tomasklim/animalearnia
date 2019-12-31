@@ -14,7 +14,7 @@ export default class Level1Quest extends AbstractQuest {
       new Task(
         'Meet the Quest Giver',
         '',
-        'Welcome in Zoo!',
+        '',
         ASSETS.QUEST_GIVER,
         ASSETS.QUEST_GIVER,
         null,
@@ -24,8 +24,8 @@ export default class Level1Quest extends AbstractQuest {
     this.tasks.push(
       new Task(
         'See all the Animals',
-        'Welcome in Zoo!\nLook around here.',
-        'Good work!',
+        'Welcome to the Zoo!\nLook around here.',
+        '',
         ASSETS.QUEST_GIVER,
         [
           ASSETS.ELEPHANT,
@@ -34,7 +34,7 @@ export default class Level1Quest extends AbstractQuest {
           ASSETS.ZEBRA,
           ASSETS.TIGER
         ],
-        null
+        ASSETS.LEVEL1_WELCOME_AUDIO
       )
     )
     this.tasks.push(
@@ -44,7 +44,7 @@ export default class Level1Quest extends AbstractQuest {
         'Nicely done!',
         ASSETS.QUEST_GIVER,
         ASSETS.ELEPHANT,
-        null
+        ASSETS.ELEPHANT_QUEST_AUDIO
       )
     )
     this.tasks.push(
@@ -54,7 +54,7 @@ export default class Level1Quest extends AbstractQuest {
         'Perfect!',
         ASSETS.QUEST_GIVER,
         ASSETS.LION,
-        null
+        ASSETS.LION_QUEST_AUDIO
       )
     )
     this.tasks.push(
@@ -64,7 +64,7 @@ export default class Level1Quest extends AbstractQuest {
         'Uff, thank you!',
         ASSETS.QUEST_GIVER,
         ASSETS.ZEBRA,
-        null
+        ASSETS.ZEBRA_QUEST_AUDIO
       )
     )
     this.tasks.push(
@@ -74,7 +74,7 @@ export default class Level1Quest extends AbstractQuest {
         'Good job!',
         ASSETS.QUEST_GIVER,
         ASSETS.TIGER,
-        null
+        ASSETS.TIGER_QUEST_AUDIO
       )
     )
     this.tasks.push(
@@ -84,7 +84,7 @@ export default class Level1Quest extends AbstractQuest {
         'Last one!',
         ASSETS.QUEST_GIVER,
         ASSETS.GIRAFFE,
-        null
+        ASSETS.GIRAFFE_QUEST_AUDIO
       )
     )
   }

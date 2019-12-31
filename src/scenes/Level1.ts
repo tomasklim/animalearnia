@@ -65,23 +65,68 @@ export default class Level1 extends AbstractScene {
   spawnAnimals() {
     this.animals.set(
       ASSETS.GIRAFFE,
-      new Animal(this, ASSETS.GIRAFFE, 670, 290, 620, 215, 'I am a giraffe.')
+      new Animal(
+        this,
+        ASSETS.GIRAFFE,
+        670,
+        290,
+        620,
+        215,
+        'I am a giraffe.',
+        ASSETS.GIRAFFE_VOICE_AUDIO
+      )
     )
     this.animals.set(
       ASSETS.ELEPHANT,
-      new Animal(this, ASSETS.ELEPHANT, 990, 950, 890, 895, 'I am an elephant.')
+      new Animal(
+        this,
+        ASSETS.ELEPHANT,
+        990,
+        950,
+        890,
+        895,
+        'I am an elephant.',
+        ASSETS.ELEPHANT_VOICE_AUDIO
+      )
     )
     this.animals.set(
       ASSETS.LION,
-      new Animal(this, ASSETS.LION, 960, 570, 910, 525, 'I am a lion.')
+      new Animal(
+        this,
+        ASSETS.LION,
+        960,
+        570,
+        910,
+        525,
+        'I am a lion.',
+        ASSETS.LION_VOICE_AUDIO
+      )
     )
     this.animals.set(
       ASSETS.ZEBRA,
-      new Animal(this, ASSETS.ZEBRA, 280, 530, 285, 480, 'I am a zebra.')
+      new Animal(
+        this,
+        ASSETS.ZEBRA,
+        280,
+        530,
+        285,
+        480,
+        'I am a zebra.',
+        ASSETS.ZEBRA_VOICE_AUDIO
+      )
     )
     this.animals.set(
       ASSETS.TIGER,
-      new Animal(this, ASSETS.TIGER, 305, 960, 315, 920, 'I am a tiger.')
+      new Animal(
+        this,
+        ASSETS.TIGER,
+        305,
+        960,
+        315,
+        920,
+        'I am a tiger.',
+        ASSETS.TIGER_VOICE_AUDIO
+      )
     )
   }
 

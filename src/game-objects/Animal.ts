@@ -6,6 +6,7 @@ export default class Animal extends Phaser.GameObjects.GameObject {
   private xSpeechBubble: number
   private ySpeechBubble: number
   private text: string
+  private audio: any
 
   constructor(
     scene: Phaser.Scene,
@@ -14,14 +15,15 @@ export default class Animal extends Phaser.GameObjects.GameObject {
     y: number,
     xSpeechBubble: number,
     ySpeechBubble: number,
-    text: string
+    text: string,
+    audio: string
   ) {
     super(scene, animal)
     this.animal = animal
     this.xSpeechBubble = xSpeechBubble
     this.ySpeechBubble = ySpeechBubble
     this.text = text
-
+    this.audio = this.scene.sound.add(audio)
     scene.physics.add.image(x, y, this.animal)
   }
 
@@ -34,5 +36,6 @@ export default class Animal extends Phaser.GameObjects.GameObject {
       35,
       this.text
     )
+    this.audio.play()
   }
 }
