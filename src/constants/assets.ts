@@ -16,3 +16,6 @@ export const TIGER = 'tiger'
 export const ELEPHANT = 'elephant'
 export const LION = 'lion'
 export const ZEBRA = 'zebra'
+
+export const STAR_FULL = 'STAR_FULL'
+export const STAR_EMPTY = 'STAR_EMPTY'

@@ -47,6 +47,9 @@ export class Preloader extends Phaser.Scene {
     this.load.image(ASSETS.LION, '../../assets/animals/lion.png')
     this.load.image(ASSETS.ZEBRA, '../../assets/animals/zebra.png')
     this.load.image(ASSETS.GIRAFFE, '../../assets/animals/giraffe.png')
+
+    this.load.image(ASSETS.STAR_FULL, '../../assets/others/star_full.png')
+    this.load.image(ASSETS.STAR_EMPTY, '../../assets/others/star_empty.png')
   }
 
   private createAnims() {

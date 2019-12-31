@@ -5,11 +5,11 @@ import * as SCENES from '../constants/scenes'
 import * as ASSETS from '../constants/assets'
 import * as CONFIG from '../constants/config'
 import QuestGiver from '../game-objects/QuestGiver'
-import LevelBar from '../game-objects/LevelBar'
+import LevelComplete from '../game-objects/LevelComplete'
 import QuestBar from '../game-objects/QuestBar'
 import Animal from '../game-objects/Animal'
 import Level1Quest from '../quests/Level1Quest'
-import SpeechBubble from '../game-objects/SpeechBubble'
+import LevelBar from '../game-objects/LevelBar'
 
 export default class Level1 extends AbstractScene {
   constructor() {

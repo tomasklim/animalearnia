@@ -1,6 +1,7 @@
 import * as ASSETS from '../constants/assets'
 import * as CONFIG from '../constants/config'
 import { Character } from './Character'
+import LevelComplete from './LevelComplete'
 
 export default class Player extends Character {
   public interactiveAreas: any
@@ -86,6 +87,9 @@ export default class Player extends Character {
               'Level 1 is complete.\n See you in level 2!',
               240
             )
+            setTimeout(() => {
+              this.scene.levelBar = new LevelComplete(this.scene, 1)
+            }, 2000)
           } else {
             this.scene.questGiver.changeSpriteType(
               ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
@@ -104,6 +108,7 @@ export default class Player extends Character {
           collisionArea.name != ASSETS.QUEST_GIVER
         ) {
           const counter = currentQuest.goalTarget.length
+          // @ts-ignore
           currentQuest.goalTarget = currentQuest.goalTarget.filter(
             goalTarget => goalTarget !== collisionArea.name
           )

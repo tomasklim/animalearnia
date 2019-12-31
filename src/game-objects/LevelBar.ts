@@ -51,7 +51,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     })
 
     this.textLevelNumber = this.scene.add.text(
-      260,
+      300,
       halfHeight - 30,
       `${this.level}`,
       {
@@ -100,7 +100,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.textLevelNumber,
-      x: 235
+      x: 250
     })
 
     return this
@@ -124,7 +124,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
           }
         },
         targets: this.textLevelNumber,
-        x: 260
+        x: 300
       })
 
       tweens.add({
