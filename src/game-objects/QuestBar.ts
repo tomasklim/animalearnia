@@ -1,11 +1,13 @@
 import 'phaser'
+import { AbstractQuest } from '../quests/AbstractQuest'
+import * as CONFIG from '../constants/config'
 
 export default class QuestBar extends Phaser.GameObjects.GameObject {
-  private quest: any
+  private quest: AbstractQuest
   private questBar: Phaser.GameObjects.Rectangle
   private questText: Phaser.GameObjects.Text
-  private questCounter: Phaser.GameObjects.Text
   private questStatus: Phaser.GameObjects.Text
+  private questCounter: Phaser.GameObjects.Text
   private errorsCounter: Phaser.GameObjects.Text
 
   constructor(scene: Phaser.Scene, quest) {
@@ -69,26 +71,25 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
   update() {
     if (this.quest.state < this.quest.tasks.length) {
       const currentTask = this.quest.tasks[this.quest.state]
-
       this.questText.setText(currentTask.objective)
-
       this.errorsCounter.setText(`${this.quest.errors} Errors`)
+
       if (currentTask.complete) {
         this.questStatus.setText('Complete')
-        this.questStatus.setColor('#116133')
+        this.questStatus.setColor(CONFIG.GREEN_COLOR)
         this.questCounter
           .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor('#116133')
+          .setColor(CONFIG.GREEN_COLOR)
       } else {
         this.questStatus.setText('In progress')
-        this.questStatus.setColor('#F9A602')
+        this.questStatus.setColor(CONFIG.ORANGE_COLOR)
         this.questCounter
           .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor('#F9A602')
+          .setColor(CONFIG.ORANGE_COLOR)
       }
     } else if (this.quest.state >= this.quest.tasks.length) {
       this.questText.setText('No quest')
-      this.questText.setColor('#ff0000')
+      this.questText.setColor(CONFIG.RED_COLOR)
       this.questStatus.setText('')
       this.questCounter.setText('')
       this.errorsCounter.setX(580)

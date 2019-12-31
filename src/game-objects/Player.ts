@@ -4,7 +4,7 @@ import { Character } from './Character'
 import LevelComplete from './LevelComplete'
 
 export default class Player extends Character {
-  public interactiveAreas: any
+  private interactiveAreas: any
 
   constructor(
     scene,
@@ -15,7 +15,6 @@ export default class Player extends Character {
     super(scene, x, y)
 
     this.interactiveAreas = interactiveAreas
-    this.scene = scene
 
     this.sprite = this.scene.physics.add
       .sprite(this.x, this.y, ASSETS.PLAYER)
@@ -89,7 +88,7 @@ export default class Player extends Character {
               ASSETS.LEVEL1_COMPLETE_AUDIO
             )
             setTimeout(() => {
-              this.scene.levelBar = new LevelComplete(this.scene, 1)
+              this.scene.levelComplete = new LevelComplete(this.scene, 1)
             }, 2000)
           } else {
             this.scene.questGiver.changeSpriteType(

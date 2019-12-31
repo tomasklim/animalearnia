@@ -9,6 +9,7 @@ export class Preloader extends Phaser.Scene {
 
   protected preload() {
     this.loadAssets()
+    this.loadSounds()
   }
 
   protected create() {
@@ -50,59 +51,61 @@ export class Preloader extends Phaser.Scene {
 
     this.load.image(ASSETS.STAR_FULL, '../../assets/others/star_full.png')
     this.load.image(ASSETS.STAR_EMPTY, '../../assets/others/star_empty.png')
+  }
 
+  private loadSounds() {
     this.load.audio(
       ASSETS.ELEPHANT_QUEST_AUDIO,
-      `../../assets/songs/${ASSETS.ELEPHANT_QUEST_AUDIO}`
+      `../../assets/sounds/${ASSETS.ELEPHANT_QUEST_AUDIO}`
     )
     this.load.audio(
       ASSETS.TIGER_QUEST_AUDIO,
-      `../../assets/songs/${ASSETS.TIGER_QUEST_AUDIO}`
+      `../../assets/sounds/${ASSETS.TIGER_QUEST_AUDIO}`
     )
     this.load.audio(
       ASSETS.ZEBRA_QUEST_AUDIO,
-      `../../assets/songs/${ASSETS.ZEBRA_QUEST_AUDIO}`
+      `../../assets/sounds/${ASSETS.ZEBRA_QUEST_AUDIO}`
     )
     this.load.audio(
       ASSETS.GIRAFFE_QUEST_AUDIO,
-      `../../assets/songs/${ASSETS.GIRAFFE_QUEST_AUDIO}`
+      `../../assets/sounds/${ASSETS.GIRAFFE_QUEST_AUDIO}`
     )
     this.load.audio(
       ASSETS.LION_QUEST_AUDIO,
-      `../../assets/songs/${ASSETS.LION_QUEST_AUDIO}`
+      `../../assets/sounds/${ASSETS.LION_QUEST_AUDIO}`
     )
     this.load.audio(
       ASSETS.TIGER_VOICE_AUDIO,
-      `../../assets/songs/${ASSETS.TIGER_VOICE_AUDIO}`
+      `../../assets/sounds/${ASSETS.TIGER_VOICE_AUDIO}`
     )
     this.load.audio(
       ASSETS.ZEBRA_VOICE_AUDIO,
-      `../../assets/songs/${ASSETS.ZEBRA_VOICE_AUDIO}`
+      `../../assets/sounds/${ASSETS.ZEBRA_VOICE_AUDIO}`
     )
     this.load.audio(
       ASSETS.LION_VOICE_AUDIO,
-      `../../assets/songs/${ASSETS.LION_VOICE_AUDIO}`
+      `../../assets/sounds/${ASSETS.LION_VOICE_AUDIO}`
     )
     this.load.audio(
       ASSETS.GIRAFFE_VOICE_AUDIO,
-      `../../assets/songs/${ASSETS.GIRAFFE_VOICE_AUDIO}`
+      `../../assets/sounds/${ASSETS.GIRAFFE_VOICE_AUDIO}`
     )
     this.load.audio(
       ASSETS.ELEPHANT_VOICE_AUDIO,
-      `../../assets/songs/${ASSETS.ELEPHANT_VOICE_AUDIO}`
+      `../../assets/sounds/${ASSETS.ELEPHANT_VOICE_AUDIO}`
     )
     this.load.audio(
       ASSETS.LEVEL1_WELCOME_AUDIO,
-      `../../assets/songs/${ASSETS.LEVEL1_WELCOME_AUDIO}`
+      `../../assets/sounds/${ASSETS.LEVEL1_WELCOME_AUDIO}`
     )
     this.load.audio(
       ASSETS.LEVEL1_COMPLETE_AUDIO,
-      `../../assets/songs/${ASSETS.LEVEL1_COMPLETE_AUDIO}`
+      `../../assets/sounds/${ASSETS.LEVEL1_COMPLETE_AUDIO}`
     )
 
     this.load.audio(
       ASSETS.ERROR_AUDIO,
-      `../../assets/songs/${ASSETS.ERROR_AUDIO}`
+      `../../assets/sounds/${ASSETS.ERROR_AUDIO}`
     )
   }
 

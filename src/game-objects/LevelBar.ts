@@ -3,8 +3,10 @@ import 'phaser'
 export default class LevelBar extends Phaser.GameObjects.GameObject {
   private rectBackground: Phaser.GameObjects.Rectangle
   private rectTextBackground: Phaser.GameObjects.Rectangle
+
   private textLevel: Phaser.GameObjects.Text
   private textLevelNumber: Phaser.GameObjects.Text
+
   private level: number
 
   constructor(scene: Phaser.Scene, level: number) {

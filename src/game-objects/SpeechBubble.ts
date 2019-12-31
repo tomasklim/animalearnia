@@ -1,8 +1,8 @@
 import 'phaser'
 
 export default class SpeechBubble extends Phaser.GameObjects.GameObject {
-  public bubble: Phaser.GameObjects.Graphics
-  public text: Phaser.GameObjects.Text
+  private bubble: Phaser.GameObjects.Graphics
+  private text: Phaser.GameObjects.Text
 
   constructor(scene: Phaser.Scene, x, y, width, height, quote) {
     super(scene, 'SpeechBubble')

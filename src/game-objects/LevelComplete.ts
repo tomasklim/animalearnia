@@ -1,22 +1,26 @@
 import 'phaser'
 import { AbstractScene } from '../scenes/AbstractScene'
 import * as ASSETS from '../constants/assets'
+import * as CONFIG from '../constants/config'
 
 export default class LevelComplete extends Phaser.GameObjects.GameObject {
   private rectBackground: Phaser.GameObjects.Rectangle
   private rectTextBackground: Phaser.GameObjects.Rectangle
+
   private textLevel: Phaser.GameObjects.Text
   private textLevelComplete: Phaser.GameObjects.Text
+
   private level: number
   private stars: Array<Phaser.GameObjects.Image>
-  public scene: AbstractScene
+
+  protected scene: AbstractScene
 
   constructor(scene: AbstractScene, level: number) {
-    super(scene, 'LevelBar')
+    super(scene, 'LevelComplete')
+    this.scene = scene
 
     this.level = level
     this.stars = []
-    this.scene = scene
 
     this.init()
   }
@@ -55,7 +59,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       halfHeight - 20,
       `LEVEL ${this.level}`,
       {
-        ...{ fontSize: 50, color: '#1eb960' }
+        ...{ fontSize: 50, color: CONFIG.GREEN_COLOR }
       }
     )
 
@@ -64,7 +68,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       halfHeight - 20,
       'COMPLETE',
       {
-        ...{ fontSize: 50, color: '#1eb960' }
+        ...{ fontSize: 50, color: CONFIG.GREEN_COLOR }
       }
     )
 
