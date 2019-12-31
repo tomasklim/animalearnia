@@ -32,3 +32,5 @@ export const ZEBRA_VOICE_AUDIO = 'Zebra-voice.mp3'
 export const GIRAFFE_VOICE_AUDIO = 'Giraffe-voice.mp3'
 export const TIGER_VOICE_AUDIO = 'Tiger-voice.mp3'
 export const LION_VOICE_AUDIO = 'Lion-voice.mp3'
+
+export const ERROR_AUDIO = 'Error.mp3'

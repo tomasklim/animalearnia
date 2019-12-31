@@ -99,6 +99,11 @@ export class Preloader extends Phaser.Scene {
       ASSETS.LEVEL1_COMPLETE_AUDIO,
       `../../assets/songs/${ASSETS.LEVEL1_COMPLETE_AUDIO}`
     )
+
+    this.load.audio(
+      ASSETS.ERROR_AUDIO,
+      `../../assets/songs/${ASSETS.ERROR_AUDIO}`
+    )
   }
 
   private createAnims() {

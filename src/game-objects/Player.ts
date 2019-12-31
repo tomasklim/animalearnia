@@ -95,7 +95,6 @@ export default class Player extends Character {
             this.scene.questGiver.changeSpriteType(
               ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
             )
-            console.log(quest.tasks[quest.state].sound)
             this.scene.questGiver.talk(
               `${
                 quest.tasks[quest.state].questCompleteText
@@ -133,6 +132,7 @@ export default class Player extends Character {
         } else {
           if (collisionArea.name !== ASSETS.QUEST_GIVER) {
             quest.errors++
+            this.scene.sound.add(ASSETS.ERROR_AUDIO, { volume: 0.1 }).play()
           }
         }
 
