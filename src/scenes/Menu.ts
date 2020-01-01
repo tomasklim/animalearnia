@@ -6,7 +6,7 @@ export class Menu extends Phaser.Scene {
   public spaceBar: Phaser.Input.Keyboard.Key
 
   protected preload() {
-    this.load.image('menu', '../../assets/scenes/menu.png')
+    this.load.image('menu', './assets/scenes/menu.png')
   }
 
   protected create() {
