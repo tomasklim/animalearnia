@@ -2,7 +2,7 @@ import 'phaser'
 import * as SCENES from '../constants/scenes'
 
 export class Menu extends Phaser.Scene {
-  public playButton: any
+  public playButton: Phaser.GameObjects.Text
   public spaceBar: Phaser.Input.Keyboard.Key
 
   protected preload() {
@@ -19,6 +19,8 @@ export class Menu extends Phaser.Scene {
         fontFamily: '"Acumin Pro"'
       })
       .setInteractive()
+
+    this.playButton
       .on('pointerdown', () => this.play())
       .on('pointerover', () => this.enterButtonHoverState())
       .on('pointerout', () => this.enterButtonRestState())

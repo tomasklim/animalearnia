@@ -4,7 +4,7 @@ export default class Task {
   public objective: string
   public questGiverText: string
   public questCompleteText: string
-  public sound: any
+  public sound: string
   public goalTarget: string | []
   public giver: string
   public complete: boolean

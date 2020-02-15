@@ -23,8 +23,7 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/animalearnia/'
+    path: path.resolve(__dirname, 'build')
   },
   resolve: {
     extensions: ['.ts', '.js', '.json']
