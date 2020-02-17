@@ -1,4 +1,3 @@
-import 'phaser'
 import * as SCENES from '../constants/scenes'
 
 export class Menu extends Phaser.Scene {

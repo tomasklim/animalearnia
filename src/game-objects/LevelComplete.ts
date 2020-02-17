@@ -1,4 +1,3 @@
-import 'phaser'
 import { AbstractScene } from '../scenes/AbstractScene'
 import * as ASSETS from '../constants/assets'
 import * as CONFIG from '../constants/config'

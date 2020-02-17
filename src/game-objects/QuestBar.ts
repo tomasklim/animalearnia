@@ -1,4 +1,3 @@
-import 'phaser'
 import { AbstractQuest } from '../quests/AbstractQuest'
 import * as CONFIG from '../constants/config'
 

@@ -1,4 +1,3 @@
-import 'phaser'
 import { AbstractScene } from '../scenes/AbstractScene'
 
 interface KeyboardKeys {

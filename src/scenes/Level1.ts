@@ -1,4 +1,3 @@
-import 'phaser'
 import Player from '../game-objects/Player'
 import { AbstractScene } from './AbstractScene'
 import * as SCENES from '../constants/scenes'

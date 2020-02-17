@@ -17,7 +17,11 @@ export default class Player extends Character {
 
     this.interactiveAreas = interactiveAreas
 
-    this.sprite = this.scene.physics.add.sprite(this.x, this.y, ASSETS.PLAYER)
+    this.sprite = this.scene.physics.add
+      .sprite(this.x, this.y, CharacterType.PLAYER)
+      .setSize(38, 20)
+      .setOffset(12, 42)
+      .setTexture(ASSETS.PLAYER, 4)
 
     this.keys = this.scene.input.keyboard.addKeys(
       'W,S,A,D,up,down,left,right,space'

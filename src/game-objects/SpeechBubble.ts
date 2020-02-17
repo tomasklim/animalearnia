@@ -1,5 +1,3 @@
-import 'phaser'
-
 export default class SpeechBubble extends Phaser.GameObjects.GameObject {
   private bubble: Phaser.GameObjects.Graphics
   private text: Phaser.GameObjects.Text

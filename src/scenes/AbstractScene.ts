@@ -1,4 +1,3 @@
-import 'phaser'
 import Player from '../game-objects/Player'
 import QuestGiver from '../game-objects/QuestGiver'
 import Animal from '../game-objects/Animal'

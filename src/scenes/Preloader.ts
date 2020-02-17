@@ -1,4 +1,3 @@
-import 'phaser'
 import * as SCENES from '../constants/scenes'
 import * as ASSETS from '../constants/assets'
 

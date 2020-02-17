@@ -1,4 +1,3 @@
-import 'phaser'
 import SpeechBubble from './SpeechBubble'
 
 export default class Animal extends Phaser.GameObjects.GameObject {
