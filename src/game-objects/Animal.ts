@@ -1,5 +1,7 @@
 import SpeechBubble from './SpeechBubble'
+import { AnimalKind } from '../enums'
 
+// TODO
 export default class Animal extends Phaser.GameObjects.GameObject {
   private animal: string
 
@@ -7,17 +9,17 @@ export default class Animal extends Phaser.GameObjects.GameObject {
   private ySpeechBubble: number
 
   private speechText: string
-  private audioText: Phaser.Sound.BaseSound
+  private audio: Phaser.Sound.BaseSound
 
   constructor(
     scene: Phaser.Scene,
-    animal: string,
+    animal: AnimalKind,
     x: number,
     y: number,
     xSpeechBubble: number,
     ySpeechBubble: number,
     speechText: string,
-    audioText: string
+    audioName: string
   ) {
     super(scene, animal)
 
@@ -25,12 +27,12 @@ export default class Animal extends Phaser.GameObjects.GameObject {
     this.xSpeechBubble = xSpeechBubble
     this.ySpeechBubble = ySpeechBubble
     this.speechText = speechText
-    this.audioText = this.scene.sound.add(audioText)
+    this.audio = this.scene.sound.add(audioName)
 
     scene.physics.add.image(x, y, this.animal)
   }
 
-  talk() {
+  talk(): void {
     new SpeechBubble(
       this.scene,
       this.xSpeechBubble,
@@ -39,6 +41,6 @@ export default class Animal extends Phaser.GameObjects.GameObject {
       35,
       this.speechText
     )
-    this.audioText.play()
+    this.audio.play()
   }
 }

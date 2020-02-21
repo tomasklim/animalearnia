@@ -15,7 +15,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     this.init()
   }
 
-  private init() {
+  private init(): void {
     this.createLevelBar()
       .glueElements()
       .toggleVisibility(true)
@@ -24,7 +24,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
       .destroyElements()
   }
 
-  private createLevelBar() {
+  private createLevelBar(): LevelBar {
     const { innerHeight: windowHeight, innerWidth: windowWidth } = window
     const halfHeight = windowHeight / 2
     const halfWidth = windowWidth / 2
@@ -62,7 +62,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private glueElements() {
+  private glueElements(): LevelBar {
     this.rectBackground.setScrollFactor(0)
     this.rectTextBackground.setScrollFactor(0)
     this.textLevel.setScrollFactor(0)
@@ -71,7 +71,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private fadeInElements() {
+  private fadeInElements(): LevelBar {
     const { tweens } = this.scene
 
     tweens.add({
@@ -106,13 +106,13 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private fadeOutElements() {
+  private fadeOutElements(): LevelBar {
     const { tweens } = this.scene
 
     const numberOfElements = 4
     let elementsCompleted = 0
 
-    setTimeout(() => {
+    setTimeout((): void => {
       tweens.add({
         alpha: 0,
         duration: 500,
@@ -175,8 +175,8 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private destroyElements() {
-    setTimeout(() => {
+  private destroyElements(): void {
+    setTimeout((): void => {
       this.textLevel.destroy()
       this.textLevelNumber.destroy()
       this.rectBackground.destroy()

@@ -1,4 +1,4 @@
-import * as SCENES from '../constants/scenes'
+import { SceneName } from "../enums"
 
 export class Menu extends Phaser.Scene {
   public playButton: Phaser.GameObjects.Text
@@ -46,6 +46,6 @@ export class Menu extends Phaser.Scene {
   }
 
   play() {
-    this.scene.start(SCENES.PRELOADER)
+    this.scene.start(SceneName.PRELOADER)
   }
 }

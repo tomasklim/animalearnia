@@ -1,8 +1,13 @@
-import * as ASSETS from '../constants/assets'
-import * as CONFIG from '../constants/config'
+import * as CONFIG from '../config'
 import { Character } from './Character'
 import LevelComplete from './LevelComplete'
 import { AbstractScene } from '../scenes/AbstractScene'
+import {
+  Direction,
+  AudioName,
+  CharacterType,
+  QuestGiverState
+} from '../enums'
 
 export default class Player extends Character {
   private interactiveAreas: Phaser.Physics.Arcade.Image[]
@@ -21,14 +26,14 @@ export default class Player extends Character {
       .sprite(this.x, this.y, CharacterType.PLAYER)
       .setSize(38, 20)
       .setOffset(12, 42)
-      .setTexture(ASSETS.PLAYER, 4)
+      .setTexture(CharacterType.PLAYER, 4)
 
     this.keys = this.scene.input.keyboard.addKeys(
       'W,S,A,D,up,down,left,right,space'
     )
   }
 
-  update() {
+  update(): void {
     const { keys, sprite } = this
     const { quest } = this.scene
 
@@ -40,28 +45,28 @@ export default class Player extends Character {
     // Update the animation last and give left/right/down animations precedence over up animations
     if (keys.down.isDown || keys.S.isDown) {
       sprite.setVelocityY(CONFIG.SPEED)
-      sprite.anims.play(ASSETS.PLAYER_WALK_DOWN, true)
+      sprite.anims.play(Direction.DOWN, true)
     } else if (keys.up.isDown || keys.W.isDown) {
       sprite.setVelocityY(-CONFIG.SPEED)
-      sprite.anims.play(ASSETS.PLAYER_WALK_UP, true)
+      sprite.anims.play(Direction.UP, true)
     } else if (keys.left.isDown || keys.A.isDown) {
       sprite.setVelocityX(-CONFIG.SPEED)
-      sprite.anims.play(ASSETS.PLAYER_WALK_LEFT, true)
+      sprite.anims.play(Direction.LEFT, true)
     } else if (keys.right.isDown || keys.D.isDown) {
       sprite.setVelocityX(CONFIG.SPEED)
-      sprite.anims.play(ASSETS.PLAYER_WALK_RIGHT, true)
+      sprite.anims.play(Direction.RIGHT, true)
     } else {
       sprite.anims.stop()
 
       // If we were moving & now we're not, then pick a single idle frame to use
       if (prevVelocity.x < 0) {
-        sprite.setTexture(ASSETS.PLAYER, 4)
+        sprite.setTexture(CharacterType.PLAYER, 4)
       } else if (prevVelocity.x > 0) {
-        sprite.setTexture(ASSETS.PLAYER, 8)
+        sprite.setTexture(CharacterType.PLAYER, 8)
       } else if (prevVelocity.y < 0) {
-        sprite.setTexture(ASSETS.PLAYER, 12)
+        sprite.setTexture(CharacterType.PLAYER, 12)
       } else if (prevVelocity.y > 0) {
-        sprite.setTexture(ASSETS.PLAYER, 0)
+        sprite.setTexture(CharacterType.PLAYER, 0)
       }
     }
 
@@ -81,19 +86,19 @@ export default class Player extends Character {
         if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
           quest.state++
           if (quest.state === quest.tasks.length) {
-            this.scene.questGiver.changeSpriteType(ASSETS.QUEST_GIVER_NO_QUEST)
+            this.scene.questGiver.changeSpriteType(QuestGiverState.NO_QUEST)
             this.scene.complete = true
             this.scene.questGiver.talk(
               'Level 1 is complete.\n See you in level 2!',
               240,
-              ASSETS.LEVEL1_COMPLETE_AUDIO
+              AudioName.LEVEL1_COMPLETE
             )
             setTimeout(() => {
               this.scene.levelComplete = new LevelComplete(this.scene, 1)
             }, 2000)
           } else {
             this.scene.questGiver.changeSpriteType(
-              ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
+              QuestGiverState.INCOMPLETE_QUEST
             )
             this.scene.questGiver.talk(
               `${
@@ -107,7 +112,7 @@ export default class Player extends Character {
           }
         } else if (
           typeof currentQuest.goalTarget === 'object' &&
-          collisionArea.name != ASSETS.QUEST_GIVER
+          collisionArea.name != CharacterType.QUEST_GIVER
         ) {
           const counter = currentQuest.goalTarget.length
           // @ts-ignore
@@ -120,19 +125,17 @@ export default class Player extends Character {
           if (!currentQuest.goalTarget.length) {
             currentQuest.complete = true
             this.scene.questGiver.changeSpriteType(
-              ASSETS.QUEST_GIVER_COMPLETE_QUEST
+              QuestGiverState.COMPLETE_QUEST
             )
           }
         } else if (currentQuest.goalTarget == collisionArea.name) {
           currentQuest.complete = true
           currentQuest.goalStatus++
-          this.scene.questGiver.changeSpriteType(
-            ASSETS.QUEST_GIVER_COMPLETE_QUEST
-          )
+          this.scene.questGiver.changeSpriteType(QuestGiverState.COMPLETE_QUEST)
         } else {
-          if (collisionArea.name !== ASSETS.QUEST_GIVER) {
+          if (collisionArea.name !== CharacterType.QUEST_GIVER) {
             quest.errors++
-            this.scene.sound.add(ASSETS.ERROR_AUDIO, { volume: 0.1 }).play()
+            this.scene.sound.add(AudioName.ERROR, { volume: 0.1 }).play()
           }
         }
 
@@ -141,7 +144,7 @@ export default class Player extends Character {
     }
   }
 
-  findCollisionArea() {
+  findCollisionArea(): Phaser.Physics.Arcade.Image {
     return this.interactiveAreas.find(area =>
       this.scene.physics.overlap(this.sprite, area)
     )

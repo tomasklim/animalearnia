@@ -1,46 +1,53 @@
-import * as ASSETS from '../constants/assets'
 import { Character } from './Character'
 import SpeechBubble from './SpeechBubble'
+import { AbstractScene } from '../scenes/AbstractScene'
+import { CharacterType, QuestGiverState } from '../enums'
 
 export default class QuestGiver extends Character {
-  private spriteType = ASSETS.QUEST_GIVER_NEW_QUEST
+  private spriteType = QuestGiverState.NEW_QUEST
 
-  constructor(scene, x, y) {
+  constructor(scene: AbstractScene, x: number, y: number) {
     super(scene, x, y)
 
     this.sprite = scene.physics.add.sprite(
       x,
       y,
-      ASSETS.QUEST_GIVER,
+      CharacterType.QUEST_GIVER,
       this.spriteType
     )
   }
 
-  changeSpriteType = spriteType => {
+  changeSpriteType = (spriteType: QuestGiverState): void => {
     this.spriteType = spriteType
     switch (spriteType) {
-      case ASSETS.QUEST_GIVER_NEW_QUEST:
-        this.sprite.setTexture(ASSETS.QUEST_GIVER, ASSETS.QUEST_GIVER_NEW_QUEST)
-        break
-      case ASSETS.QUEST_GIVER_INCOMPLETE_QUEST:
+      case QuestGiverState.NEW_QUEST:
         this.sprite.setTexture(
-          ASSETS.QUEST_GIVER,
-          ASSETS.QUEST_GIVER_INCOMPLETE_QUEST
+          CharacterType.QUEST_GIVER,
+          QuestGiverState.NEW_QUEST
         )
         break
-      case ASSETS.QUEST_GIVER_COMPLETE_QUEST:
+      case QuestGiverState.INCOMPLETE_QUEST:
         this.sprite.setTexture(
-          ASSETS.QUEST_GIVER,
-          ASSETS.QUEST_GIVER_COMPLETE_QUEST
+          CharacterType.QUEST_GIVER,
+          QuestGiverState.INCOMPLETE_QUEST
         )
         break
-      case ASSETS.QUEST_GIVER_NO_QUEST:
-        this.sprite.setTexture(ASSETS.QUEST_GIVER, ASSETS.QUEST_GIVER_NO_QUEST)
+      case QuestGiverState.COMPLETE_QUEST:
+        this.sprite.setTexture(
+          CharacterType.QUEST_GIVER,
+          QuestGiverState.COMPLETE_QUEST
+        )
+        break
+      case QuestGiverState.NO_QUEST:
+        this.sprite.setTexture(
+          CharacterType.QUEST_GIVER,
+          QuestGiverState.NO_QUEST
+        )
         break
     }
   }
 
-  talk(text, width, audio) {
+  talk(text, width, audio): void {
     new SpeechBubble(this.scene, 730, 1045, width, 70, text)
     this.scene.sound.add(audio).play()
   }

@@ -2,7 +2,14 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
   private bubble: Phaser.GameObjects.Graphics
   private text: Phaser.GameObjects.Text
 
-  constructor(scene: Phaser.Scene, x, y, width, height, quote) {
+  constructor(
+    scene: Phaser.Scene,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    quote: string
+  ) {
     super(scene, 'SpeechBubble')
 
     this.createSpeechBubble(x, y, width, height, quote)
@@ -11,7 +18,13 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
       .destroyElements()
   }
 
-  createSpeechBubble(x, y, width, height, quote) {
+  createSpeechBubble(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    quote: string
+  ): SpeechBubble {
     const bubbleWidth = width
     const bubbleHeight = height
     const bubblePadding = 10
@@ -66,7 +79,7 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private fadeInElements() {
+  private fadeInElements(): SpeechBubble {
     const { tweens } = this.scene
 
     tweens.add({
@@ -78,7 +91,7 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private fadeOutElements() {
+  private fadeOutElements(): SpeechBubble {
     const { tweens } = this.scene
 
     const numberOfElements = 2
@@ -102,14 +115,14 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private destroyElements() {
+  private destroyElements(): void {
     setTimeout(() => {
       this.text.destroy()
       this.bubble.destroy()
     }, 5000)
   }
 
-  private toggleVisibility(show: boolean) {
+  private toggleVisibility(show: boolean): SpeechBubble {
     if (show) {
       this.bubble.setAlpha(0)
       this.text.setAlpha(0)

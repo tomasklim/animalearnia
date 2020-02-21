@@ -1,6 +1,6 @@
 import { AbstractScene } from '../scenes/AbstractScene'
 
-interface KeyboardKeys {
+export interface KeyboardKeys {
   down?: Phaser.Input.Keyboard.Key
   S?: Phaser.Input.Keyboard.Key
   up?: Phaser.Input.Keyboard.Key

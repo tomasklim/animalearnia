@@ -1,23 +1,23 @@
-import * as ASSETS from '../constants/assets'
+import { AudioName } from '../enums'
 
 export default class Task {
   public objective: string
   public questGiverText: string
   public questCompleteText: string
-  public sound: string
-  public goalTarget: string | []
+  public sound: AudioName
+  public goalTarget: string | string[]
   public giver: string
   public complete: boolean
   public goalStatus: number
   public goalTotal: number
 
   constructor(
-    objective,
-    questGiverText,
-    questCompleteText,
-    giver,
-    goalTarget,
-    sound,
+    objective: string,
+    questGiverText: string,
+    questCompleteText: string,
+    giver: string,
+    goalTarget: string | string[],
+    sound: AudioName,
     complete = false
   ) {
     this.objective = objective

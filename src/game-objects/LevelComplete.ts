@@ -1,6 +1,5 @@
 import { AbstractScene } from '../scenes/AbstractScene'
-import * as ASSETS from '../constants/assets'
-import * as CONFIG from '../constants/config'
+import { Star, Color } from '../enums'
 
 export default class LevelComplete extends Phaser.GameObjects.GameObject {
   private rectBackground: Phaser.GameObjects.Rectangle
@@ -58,7 +57,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       halfHeight - 20,
       `LEVEL ${this.level}`,
       {
-        ...{ fontSize: 50, color: CONFIG.GREEN_COLOR }
+        ...{ fontSize: 50, color: Color.GREEN }
       }
     )
 
@@ -67,20 +66,20 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       halfHeight - 20,
       'COMPLETE',
       {
-        ...{ fontSize: 50, color: CONFIG.GREEN_COLOR }
+        ...{ fontSize: 50, color: Color.GREEN }
       }
     )
 
-    this.stars[0] = this.scene.add.image(600, halfHeight, ASSETS.STAR_FULL)
+    this.stars[0] = this.scene.add.image(600, halfHeight, Star.FULL)
     this.stars[1] = this.scene.add.image(
       670,
       halfHeight,
-      this.scene.quest.errors > 1 ? ASSETS.STAR_EMPTY : ASSETS.STAR_FULL
+      this.scene.quest.errors > 1 ? Star.EMPTY : Star.FULL
     )
     this.stars[2] = this.scene.add.image(
       740,
       halfHeight,
-      this.scene.quest.errors >= 1 ? ASSETS.STAR_EMPTY : ASSETS.STAR_FULL
+      this.scene.quest.errors >= 1 ? Star.EMPTY : Star.FULL
     )
 
     return this

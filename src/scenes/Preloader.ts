@@ -1,9 +1,8 @@
-import * as SCENES from '../constants/scenes'
-import * as ASSETS from '../constants/assets'
+import { AnimalKind, Star,Direction, AudioName, CharacterType, SceneName } from '../enums'
 
 export class Preloader extends Phaser.Scene {
   constructor() {
-    super(SCENES.PRELOADER)
+    super(SceneName.PRELOADER)
   }
 
   protected preload() {
@@ -14,12 +13,12 @@ export class Preloader extends Phaser.Scene {
   protected create() {
     this.createAnims()
 
-    this.scene.launch(SCENES.SMALL_ZOO_MAP)
+    this.scene.launch(SceneName.SMALL_ZOO_MAP)
   }
 
   private loadAssets() {
     this.load.spritesheet(
-      ASSETS.PLAYER,
+      CharacterType.PLAYER,
       './assets/sprites/character-64px.png',
       {
         frameWidth: 64,
@@ -28,7 +27,7 @@ export class Preloader extends Phaser.Scene {
     )
 
     this.load.spritesheet(
-      ASSETS.QUEST_GIVER,
+      CharacterType.QUEST_GIVER,
       './assets/sprites/quest-giver-64px.png',
       {
         frameWidth: 64,
@@ -39,73 +38,73 @@ export class Preloader extends Phaser.Scene {
     this.load.image('zoo_tiles', './assets/environment/zoo_image.png')
     this.load.tilemapTiledJSON('map', './assets/environment/zoo_map_20x25.json')
 
-    this.load.image(ASSETS.TIGER, './assets/animals/tiger.png')
-    this.load.image(ASSETS.ELEPHANT, './assets/animals/elephant.png')
-    this.load.image(ASSETS.LION, './assets/animals/lion.png')
-    this.load.image(ASSETS.ZEBRA, './assets/animals/zebra.png')
-    this.load.image(ASSETS.GIRAFFE, './assets/animals/giraffe.png')
+    this.load.image(AnimalKind.TIGER, './assets/animals/tiger.png')
+    this.load.image(AnimalKind.ELEPHANT, './assets/animals/elephant.png')
+    this.load.image(AnimalKind.LION, './assets/animals/lion.png')
+    this.load.image(AnimalKind.ZEBRA, './assets/animals/zebra.png')
+    this.load.image(AnimalKind.GIRAFFE, './assets/animals/giraffe.png')
 
-    this.load.image(ASSETS.STAR_FULL, './assets/others/star_full.png')
-    this.load.image(ASSETS.STAR_EMPTY, './assets/others/star_empty.png')
+    this.load.image(Star.FULL, './assets/others/star_full.png')
+    this.load.image(Star.EMPTY, './assets/others/star_empty.png')
   }
 
   private loadSounds() {
     this.load.audio(
-      ASSETS.ELEPHANT_QUEST_AUDIO,
-      `./assets/sounds/${ASSETS.ELEPHANT_QUEST_AUDIO}`
+      AudioName.ELEPHANT_QUEST,
+      `./assets/sounds/${AudioName.ELEPHANT_QUEST}`
     )
     this.load.audio(
-      ASSETS.TIGER_QUEST_AUDIO,
-      `./assets/sounds/${ASSETS.TIGER_QUEST_AUDIO}`
+      AudioName.TIGER_QUEST,
+      `./assets/sounds/${AudioName.TIGER_QUEST}`
     )
     this.load.audio(
-      ASSETS.ZEBRA_QUEST_AUDIO,
-      `./assets/sounds/${ASSETS.ZEBRA_QUEST_AUDIO}`
+      AudioName.ZEBRA_QUEST,
+      `./assets/sounds/${AudioName.ZEBRA_QUEST}`
     )
     this.load.audio(
-      ASSETS.GIRAFFE_QUEST_AUDIO,
-      `./assets/sounds/${ASSETS.GIRAFFE_QUEST_AUDIO}`
+      AudioName.GIRAFFE_QUEST,
+      `./assets/sounds/${AudioName.GIRAFFE_QUEST}`
     )
     this.load.audio(
-      ASSETS.LION_QUEST_AUDIO,
-      `./assets/sounds/${ASSETS.LION_QUEST_AUDIO}`
+      AudioName.LION_QUEST,
+      `./assets/sounds/${AudioName.LION_QUEST}`
     )
     this.load.audio(
-      ASSETS.TIGER_VOICE_AUDIO,
-      `./assets/sounds/${ASSETS.TIGER_VOICE_AUDIO}`
+      AudioName.TIGER_VOICE,
+      `./assets/sounds/${AudioName.TIGER_VOICE}`
     )
     this.load.audio(
-      ASSETS.ZEBRA_VOICE_AUDIO,
-      `./assets/sounds/${ASSETS.ZEBRA_VOICE_AUDIO}`
+      AudioName.ZEBRA_VOICE,
+      `./assets/sounds/${AudioName.ZEBRA_VOICE}`
     )
     this.load.audio(
-      ASSETS.LION_VOICE_AUDIO,
-      `./assets/sounds/${ASSETS.LION_VOICE_AUDIO}`
+      AudioName.LION_VOICE,
+      `./assets/sounds/${AudioName.LION_VOICE}`
     )
     this.load.audio(
-      ASSETS.GIRAFFE_VOICE_AUDIO,
-      `./assets/sounds/${ASSETS.GIRAFFE_VOICE_AUDIO}`
+      AudioName.GIRAFFE_VOICE,
+      `./assets/sounds/${AudioName.GIRAFFE_VOICE}`
     )
     this.load.audio(
-      ASSETS.ELEPHANT_VOICE_AUDIO,
-      `./assets/sounds/${ASSETS.ELEPHANT_VOICE_AUDIO}`
+      AudioName.ELEPHANT_VOICE,
+      `./assets/sounds/${AudioName.ELEPHANT_VOICE}`
     )
     this.load.audio(
-      ASSETS.LEVEL1_WELCOME_AUDIO,
-      `./assets/sounds/${ASSETS.LEVEL1_WELCOME_AUDIO}`
+      AudioName.LEVEL1_WELCOME,
+      `./assets/sounds/${AudioName.LEVEL1_WELCOME}`
     )
     this.load.audio(
-      ASSETS.LEVEL1_COMPLETE_AUDIO,
-      `./assets/sounds/${ASSETS.LEVEL1_COMPLETE_AUDIO}`
+      AudioName.LEVEL1_COMPLETE,
+      `./assets/sounds/${AudioName.LEVEL1_COMPLETE}`
     )
 
-    this.load.audio(ASSETS.ERROR_AUDIO, `./assets/sounds/${ASSETS.ERROR_AUDIO}`)
+    this.load.audio(AudioName.ERROR, `./assets/sounds/${AudioName.ERROR}`)
   }
 
   private createAnims() {
     this.anims.create({
-      key: ASSETS.PLAYER_WALK_DOWN,
-      frames: this.anims.generateFrameNumbers(ASSETS.PLAYER, {
+      key: Direction.DOWN,
+      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
         start: 0,
         end: 3
       }),
@@ -113,8 +112,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: ASSETS.PLAYER_WALK_LEFT,
-      frames: this.anims.generateFrameNumbers(ASSETS.PLAYER, {
+      key: Direction.LEFT,
+      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
         start: 4,
         end: 7
       }),
@@ -122,8 +121,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: ASSETS.PLAYER_WALK_RIGHT,
-      frames: this.anims.generateFrameNumbers(ASSETS.PLAYER, {
+      key: Direction.RIGHT,
+      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
         start: 8,
         end: 11
       }),
@@ -131,8 +130,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: ASSETS.PLAYER_WALK_UP,
-      frames: this.anims.generateFrameNumbers(ASSETS.PLAYER, {
+      key: Direction.UP,
+      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
         start: 12,
         end: 15
       }),
