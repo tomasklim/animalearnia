@@ -75,20 +75,20 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
 
       if (currentTask.complete) {
         this.questStatus.setText('Complete')
-        this.questStatus.setColor(Color.GREEN)
+        this.questStatus.setColor(Color.green)
         this.questCounter
           .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor(Color.GREEN)
+          .setColor(Color.green)
       } else {
         this.questStatus.setText('In progress')
-        this.questStatus.setColor(Color.ORANGE)
+        this.questStatus.setColor(Color.orange)
         this.questCounter
           .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor(Color.ORANGE)
+          .setColor(Color.orange)
       }
     } else if (this.quest.state >= this.quest.tasks.length) {
       this.questText.setText('No quest')
-      this.questText.setColor(Color.RED)
+      this.questText.setColor(Color.red)
       this.questStatus.setText('')
       this.questCounter.setText('')
       this.errorsCounter.setX(580)

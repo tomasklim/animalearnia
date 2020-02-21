@@ -2,7 +2,7 @@ import { AnimalKind, Star,Direction, AudioName, CharacterType, SceneName } from 
 
 export class Preloader extends Phaser.Scene {
   constructor() {
-    super(SceneName.PRELOADER)
+    super(SceneName.preloader)
   }
 
   protected preload() {
@@ -13,12 +13,12 @@ export class Preloader extends Phaser.Scene {
   protected create() {
     this.createAnims()
 
-    this.scene.launch(SceneName.SMALL_ZOO_MAP)
+    this.scene.launch(SceneName.smallZooMap)
   }
 
   private loadAssets() {
     this.load.spritesheet(
-      CharacterType.PLAYER,
+      CharacterType.player,
       './assets/sprites/character-64px.png',
       {
         frameWidth: 64,
@@ -27,7 +27,7 @@ export class Preloader extends Phaser.Scene {
     )
 
     this.load.spritesheet(
-      CharacterType.QUEST_GIVER,
+      CharacterType.questGiver,
       './assets/sprites/quest-giver-64px.png',
       {
         frameWidth: 64,
@@ -38,73 +38,73 @@ export class Preloader extends Phaser.Scene {
     this.load.image('zoo_tiles', './assets/environment/zoo_image.png')
     this.load.tilemapTiledJSON('map', './assets/environment/zoo_map_20x25.json')
 
-    this.load.image(AnimalKind.TIGER, './assets/animals/tiger.png')
-    this.load.image(AnimalKind.ELEPHANT, './assets/animals/elephant.png')
-    this.load.image(AnimalKind.LION, './assets/animals/lion.png')
-    this.load.image(AnimalKind.ZEBRA, './assets/animals/zebra.png')
-    this.load.image(AnimalKind.GIRAFFE, './assets/animals/giraffe.png')
+    this.load.image(AnimalKind.tiger, './assets/animals/tiger.png')
+    this.load.image(AnimalKind.elephant, './assets/animals/elephant.png')
+    this.load.image(AnimalKind.lion, './assets/animals/lion.png')
+    this.load.image(AnimalKind.zebra, './assets/animals/zebra.png')
+    this.load.image(AnimalKind.giraffe, './assets/animals/giraffe.png')
 
-    this.load.image(Star.FULL, './assets/others/star_full.png')
-    this.load.image(Star.EMPTY, './assets/others/star_empty.png')
+    this.load.image(Star.full, './assets/others/star_full.png')
+    this.load.image(Star.empty, './assets/others/star_empty.png')
   }
 
   private loadSounds() {
     this.load.audio(
-      AudioName.ELEPHANT_QUEST,
-      `./assets/sounds/${AudioName.ELEPHANT_QUEST}`
+      AudioName.elephantQuest,
+      `./assets/sounds/${AudioName.elephantQuest}`
     )
     this.load.audio(
-      AudioName.TIGER_QUEST,
-      `./assets/sounds/${AudioName.TIGER_QUEST}`
+      AudioName.tigerQuest,
+      `./assets/sounds/${AudioName.tigerQuest}`
     )
     this.load.audio(
-      AudioName.ZEBRA_QUEST,
-      `./assets/sounds/${AudioName.ZEBRA_QUEST}`
+      AudioName.zebraQuest,
+      `./assets/sounds/${AudioName.zebraQuest}`
     )
     this.load.audio(
-      AudioName.GIRAFFE_QUEST,
-      `./assets/sounds/${AudioName.GIRAFFE_QUEST}`
+      AudioName.giraffeQuest,
+      `./assets/sounds/${AudioName.giraffeQuest}`
     )
     this.load.audio(
-      AudioName.LION_QUEST,
-      `./assets/sounds/${AudioName.LION_QUEST}`
+      AudioName.lionQuest,
+      `./assets/sounds/${AudioName.lionQuest}`
     )
     this.load.audio(
-      AudioName.TIGER_VOICE,
-      `./assets/sounds/${AudioName.TIGER_VOICE}`
+      AudioName.tigerVoice,
+      `./assets/sounds/${AudioName.tigerVoice}`
     )
     this.load.audio(
-      AudioName.ZEBRA_VOICE,
-      `./assets/sounds/${AudioName.ZEBRA_VOICE}`
+      AudioName.zebraVoice,
+      `./assets/sounds/${AudioName.zebraVoice}`
     )
     this.load.audio(
-      AudioName.LION_VOICE,
-      `./assets/sounds/${AudioName.LION_VOICE}`
+      AudioName.lionVoice,
+      `./assets/sounds/${AudioName.lionVoice}`
     )
     this.load.audio(
-      AudioName.GIRAFFE_VOICE,
-      `./assets/sounds/${AudioName.GIRAFFE_VOICE}`
+      AudioName.giraffeVoice,
+      `./assets/sounds/${AudioName.giraffeVoice}`
     )
     this.load.audio(
-      AudioName.ELEPHANT_VOICE,
-      `./assets/sounds/${AudioName.ELEPHANT_VOICE}`
+      AudioName.elephantVoice,
+      `./assets/sounds/${AudioName.elephantVoice}`
     )
     this.load.audio(
-      AudioName.LEVEL1_WELCOME,
-      `./assets/sounds/${AudioName.LEVEL1_WELCOME}`
+      AudioName.level1Welcome,
+      `./assets/sounds/${AudioName.level1Welcome}`
     )
     this.load.audio(
-      AudioName.LEVEL1_COMPLETE,
-      `./assets/sounds/${AudioName.LEVEL1_COMPLETE}`
+      AudioName.Level1Complete,
+      `./assets/sounds/${AudioName.Level1Complete}`
     )
 
-    this.load.audio(AudioName.ERROR, `./assets/sounds/${AudioName.ERROR}`)
+    this.load.audio(AudioName.errorSound, `./assets/sounds/${AudioName.errorSound}`)
   }
 
   private createAnims() {
     this.anims.create({
-      key: Direction.DOWN,
-      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
+      key: Direction.down,
+      frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 0,
         end: 3
       }),
@@ -112,8 +112,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: Direction.LEFT,
-      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
+      key: Direction.left,
+      frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 4,
         end: 7
       }),
@@ -121,8 +121,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: Direction.RIGHT,
-      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
+      key: Direction.right,
+      frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 8,
         end: 11
       }),
@@ -130,8 +130,8 @@ export class Preloader extends Phaser.Scene {
       repeat: -1
     })
     this.anims.create({
-      key: Direction.UP,
-      frames: this.anims.generateFrameNumbers(CharacterType.PLAYER, {
+      key: Direction.up,
+      frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 12,
         end: 15
       }),

@@ -4,12 +4,13 @@ import QuestGiver from '../game-objects/QuestGiver'
 import QuestBar from '../game-objects/QuestBar'
 import Level1Quest from '../quests/Level1Quest'
 import LevelBar from '../game-objects/LevelBar'
-import { AnimalKind, AudioName, SceneName, Color } from '../enums'
+import { AnimalKind, AudioName, SceneName } from '../enums'
 import Animal from '../game-objects/Animal'
+import * as CONFIG from '../config'
 
 export default class Level1 extends AbstractScene {
   constructor() {
-    super(SceneName.SMALL_ZOO_MAP)
+    super(SceneName.smallZooMap)
   }
 
   create() {
@@ -53,75 +54,75 @@ export default class Level1 extends AbstractScene {
     this.physics.add.collider(this.player.sprite, objectsLayer)
 
     const camera = this.cameras.main
-    camera.setBackgroundColor(Color.BACKGROUND)
+    camera.setBackgroundColor(CONFIG.BACKGROUND_COLOR)
     camera.startFollow(this.player.sprite)
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
   }
 
   spawnAnimals() {
     this.animals.set(
-      AnimalKind.GIRAFFE,
+      AnimalKind.giraffe,
       new Animal(
         this,
-        AnimalKind.GIRAFFE,
+        AnimalKind.giraffe,
         670,
         290,
         620,
         215,
         'I am a giraffe.',
-        AudioName.GIRAFFE_VOICE
+        AudioName.giraffeVoice
       )
     )
     this.animals.set(
-      AnimalKind.ELEPHANT,
+      AnimalKind.elephant,
       new Animal(
         this,
-        AnimalKind.ELEPHANT,
+        AnimalKind.elephant,
         990,
         950,
         890,
         895,
         'I am an elephant.',
-        AudioName.ELEPHANT_VOICE
+        AudioName.elephantVoice
       )
     )
     this.animals.set(
-      AnimalKind.LION,
+      AnimalKind.lion,
       new Animal(
         this,
-        AnimalKind.LION,
+        AnimalKind.lion,
         960,
         570,
         910,
         525,
         'I am a lion.',
-        AudioName.LION_VOICE
+        AudioName.lionVoice
       )
     )
     this.animals.set(
-      AnimalKind.ZEBRA,
+      AnimalKind.zebra,
       new Animal(
         this,
-        AnimalKind.ZEBRA,
+        AnimalKind.zebra,
         280,
         530,
         285,
         480,
         'I am a zebra.',
-        AudioName.ZEBRA_VOICE
+        AudioName.zebraVoice
       )
     )
     this.animals.set(
-      AnimalKind.TIGER,
+      AnimalKind.tiger,
       new Animal(
         this,
-        AnimalKind.TIGER,
+        AnimalKind.tiger,
         305,
         960,
         315,
         920,
         'I am a tiger.',
-        AudioName.TIGER_VOICE
+        AudioName.tigerVoice
       )
     )
   }

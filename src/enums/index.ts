@@ -1,61 +1,60 @@
 export enum SceneName {
-  SMALL_ZOO_MAP = 'small_zoo_map',
-  PRELOADER = 'preloader'
+  smallZooMap = 'small_zoo_map',
+  preloader = 'preloader'
 }
 
 export enum Color {
-  WHITE = '#ffffff',
-  BLACK = '#000',
-  GREEN = '#1eb960',
-  ORANGE = '#F9A602',
-  RED = '#ff0000',
-  BACKGROUND = '#27ae60'
+  white = '#ffffff',
+  black = '#000',
+  green = '#1eb960',
+  orange = '#F9A602',
+  red = '#ff0000'
 }
 
 export enum Direction {
-  DOWN = 'down',
-  UP = 'up',
-  LEFT = 'left',
-  RIGHT = 'right'
+  down = 'down',
+  up = 'up',
+  left = 'left',
+  right = 'right'
 }
 
 export enum AnimalKind {
-  GIRAFFE = 'giraffe',
-  TIGER = 'tiger',
-  ELEPHANT = 'elephant',
-  LION = 'lion',
-  ZEBRA = 'zebra'
+  giraffe = 'giraffe',
+  tiger = 'tiger',
+  elephant = 'elephant',
+  lion = 'lion',
+  zebra = 'zebra'
 }
 
 export enum Star {
-  EMPTY = 'empty',
-  FULL = 'full'
+  empty = 'empty',
+  full = 'full'
 }
 
 export enum AudioName {
-  ELEPHANT_QUEST = 'Elephant-quest.mp3',
-  ZEBRA_QUEST = 'Zebra-quest.mp3',
-  GIRAFFE_QUEST = 'Giraffe-quest.mp3',
-  TIGER_QUEST = 'Tiger-quest.mp3',
-  LION_QUEST = 'Lion-quest.mp3',
-  LEVEL1_COMPLETE = 'Level1-complete.mp3',
-  LEVEL1_WELCOME = 'Level1-welcome.mp3',
-  ELEPHANT_VOICE = 'Elephant-voice.mp3',
-  ZEBRA_VOICE = 'Zebra-voice.mp3',
-  GIRAFFE_VOICE = 'Giraffe-voice.mp3',
-  TIGER_VOICE = 'Tiger-voice.mp3',
-  LION_VOICE = 'Lion-voice.mp3',
-  ERROR = 'Error.mp3'
+  elephantQuest = 'Elephant-quest.mp3',
+  zebraQuest = 'Zebra-quest.mp3',
+  giraffeQuest = 'Giraffe-quest.mp3',
+  tigerQuest = 'Tiger-quest.mp3',
+  lionQuest = 'Lion-quest.mp3',
+  Level1Complete = 'Level1-complete.mp3',
+  level1Welcome = 'Level1-welcome.mp3',
+  elephantVoice = 'Elephant-voice.mp3',
+  zebraVoice = 'Zebra-voice.mp3',
+  giraffeVoice = 'Giraffe-voice.mp3',
+  tigerVoice = 'Tiger-voice.mp3',
+  lionVoice = 'Lion-voice.mp3',
+  errorSound = 'Error.mp3'
 }
 
 export enum CharacterType {
-  PLAYER = 'player',
-  QUEST_GIVER = 'quest_giver'
+  player = 'player',
+  questGiver = 'quest_giver'
 }
 
 export enum QuestGiverState {
-  NEW_QUEST = 0,
-  INCOMPLETE_QUEST,
-  COMPLETE_QUEST,
-  NO_QUEST
+  newQuest = 0,
+  incompleteQuest,
+  completeQuest,
+  noQuest
 }

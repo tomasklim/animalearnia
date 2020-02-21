@@ -9,7 +9,7 @@ import {
   QuestGiverState
 } from '../enums'
 
-export default class Player extends Character {
+export default class player extends Character {
   private interactiveAreas: Phaser.Physics.Arcade.Image[]
 
   constructor(
@@ -23,10 +23,10 @@ export default class Player extends Character {
     this.interactiveAreas = interactiveAreas
 
     this.sprite = this.scene.physics.add
-      .sprite(this.x, this.y, CharacterType.PLAYER)
+      .sprite(this.x, this.y, CharacterType.player)
       .setSize(38, 20)
       .setOffset(12, 42)
-      .setTexture(CharacterType.PLAYER, 4)
+      .setTexture(CharacterType.player, 4)
 
     this.keys = this.scene.input.keyboard.addKeys(
       'W,S,A,D,up,down,left,right,space'
@@ -45,28 +45,28 @@ export default class Player extends Character {
     // Update the animation last and give left/right/down animations precedence over up animations
     if (keys.down.isDown || keys.S.isDown) {
       sprite.setVelocityY(CONFIG.SPEED)
-      sprite.anims.play(Direction.DOWN, true)
+      sprite.anims.play(Direction.down, true)
     } else if (keys.up.isDown || keys.W.isDown) {
       sprite.setVelocityY(-CONFIG.SPEED)
-      sprite.anims.play(Direction.UP, true)
+      sprite.anims.play(Direction.up, true)
     } else if (keys.left.isDown || keys.A.isDown) {
       sprite.setVelocityX(-CONFIG.SPEED)
-      sprite.anims.play(Direction.LEFT, true)
+      sprite.anims.play(Direction.left, true)
     } else if (keys.right.isDown || keys.D.isDown) {
       sprite.setVelocityX(CONFIG.SPEED)
-      sprite.anims.play(Direction.RIGHT, true)
+      sprite.anims.play(Direction.right, true)
     } else {
       sprite.anims.stop()
 
       // If we were moving & now we're not, then pick a single idle frame to use
       if (prevVelocity.x < 0) {
-        sprite.setTexture(CharacterType.PLAYER, 4)
+        sprite.setTexture(CharacterType.player, 4)
       } else if (prevVelocity.x > 0) {
-        sprite.setTexture(CharacterType.PLAYER, 8)
+        sprite.setTexture(CharacterType.player, 8)
       } else if (prevVelocity.y < 0) {
-        sprite.setTexture(CharacterType.PLAYER, 12)
+        sprite.setTexture(CharacterType.player, 12)
       } else if (prevVelocity.y > 0) {
-        sprite.setTexture(CharacterType.PLAYER, 0)
+        sprite.setTexture(CharacterType.player, 0)
       }
     }
 
@@ -86,19 +86,19 @@ export default class Player extends Character {
         if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
           quest.state++
           if (quest.state === quest.tasks.length) {
-            this.scene.questGiver.changeSpriteType(QuestGiverState.NO_QUEST)
+            this.scene.questGiver.changeSpriteType(QuestGiverState.noQuest)
             this.scene.complete = true
             this.scene.questGiver.talk(
               'Level 1 is complete.\n See you in level 2!',
               240,
-              AudioName.LEVEL1_COMPLETE
+              AudioName.Level1Complete
             )
             setTimeout(() => {
               this.scene.levelComplete = new LevelComplete(this.scene, 1)
             }, 2000)
           } else {
             this.scene.questGiver.changeSpriteType(
-              QuestGiverState.INCOMPLETE_QUEST
+              QuestGiverState.incompleteQuest
             )
             this.scene.questGiver.talk(
               `${
@@ -112,7 +112,7 @@ export default class Player extends Character {
           }
         } else if (
           typeof currentQuest.goalTarget === 'object' &&
-          collisionArea.name != CharacterType.QUEST_GIVER
+          collisionArea.name != CharacterType.questGiver
         ) {
           const counter = currentQuest.goalTarget.length
           // @ts-ignore
@@ -125,17 +125,17 @@ export default class Player extends Character {
           if (!currentQuest.goalTarget.length) {
             currentQuest.complete = true
             this.scene.questGiver.changeSpriteType(
-              QuestGiverState.COMPLETE_QUEST
+              QuestGiverState.completeQuest
             )
           }
         } else if (currentQuest.goalTarget == collisionArea.name) {
           currentQuest.complete = true
           currentQuest.goalStatus++
-          this.scene.questGiver.changeSpriteType(QuestGiverState.COMPLETE_QUEST)
+          this.scene.questGiver.changeSpriteType(QuestGiverState.completeQuest)
         } else {
-          if (collisionArea.name !== CharacterType.QUEST_GIVER) {
+          if (collisionArea.name !== CharacterType.questGiver) {
             quest.errors++
-            this.scene.sound.add(AudioName.ERROR, { volume: 0.1 }).play()
+            this.scene.sound.add(AudioName.errorSound, { volume: 0.1 }).play()
           }
         }
 

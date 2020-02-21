@@ -46,6 +46,6 @@ export class Menu extends Phaser.Scene {
   }
 
   play() {
-    this.scene.start(SceneName.PRELOADER)
+    this.scene.start(SceneName.preloader)
   }
 }

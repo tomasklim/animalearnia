@@ -4,7 +4,7 @@ import { AbstractScene } from '../scenes/AbstractScene'
 import { CharacterType, QuestGiverState } from '../enums'
 
 export default class QuestGiver extends Character {
-  private spriteType = QuestGiverState.NEW_QUEST
+  private spriteType = QuestGiverState.newQuest
 
   constructor(scene: AbstractScene, x: number, y: number) {
     super(scene, x, y)
@@ -12,7 +12,7 @@ export default class QuestGiver extends Character {
     this.sprite = scene.physics.add.sprite(
       x,
       y,
-      CharacterType.QUEST_GIVER,
+      CharacterType.questGiver,
       this.spriteType
     )
   }
@@ -20,28 +20,28 @@ export default class QuestGiver extends Character {
   changeSpriteType = (spriteType: QuestGiverState): void => {
     this.spriteType = spriteType
     switch (spriteType) {
-      case QuestGiverState.NEW_QUEST:
+      case QuestGiverState.newQuest:
         this.sprite.setTexture(
-          CharacterType.QUEST_GIVER,
-          QuestGiverState.NEW_QUEST
+          CharacterType.questGiver,
+          QuestGiverState.newQuest
         )
         break
-      case QuestGiverState.INCOMPLETE_QUEST:
+      case QuestGiverState.incompleteQuest:
         this.sprite.setTexture(
-          CharacterType.QUEST_GIVER,
-          QuestGiverState.INCOMPLETE_QUEST
+          CharacterType.questGiver,
+          QuestGiverState.incompleteQuest
         )
         break
-      case QuestGiverState.COMPLETE_QUEST:
+      case QuestGiverState.completeQuest:
         this.sprite.setTexture(
-          CharacterType.QUEST_GIVER,
-          QuestGiverState.COMPLETE_QUEST
+          CharacterType.questGiver,
+          QuestGiverState.completeQuest
         )
         break
-      case QuestGiverState.NO_QUEST:
+      case QuestGiverState.noQuest:
         this.sprite.setTexture(
-          CharacterType.QUEST_GIVER,
-          QuestGiverState.NO_QUEST
+          CharacterType.questGiver,
+          QuestGiverState.noQuest
         )
         break
     }
