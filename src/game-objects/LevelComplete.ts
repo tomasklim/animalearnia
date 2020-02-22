@@ -1,14 +1,17 @@
-import { AbstractScene } from '../scenes/AbstractScene'
+import AbstractScene from '../scenes/AbstractScene'
 import { Star, Color } from '../enums'
 
 export default class LevelComplete extends Phaser.GameObjects.GameObject {
   private rectBackground: Phaser.GameObjects.Rectangle
+
   private rectTextBackground: Phaser.GameObjects.Rectangle
 
   private textLevel: Phaser.GameObjects.Text
+
   private textLevelComplete: Phaser.GameObjects.Text
 
   private level: number
+
   private stars: Array<Phaser.GameObjects.Image>
 
   protected scene: AbstractScene
@@ -23,69 +26,38 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
     this.init()
   }
 
-  private init() {
+  private init(): void {
     this.createLevelBar()
       .glueElements()
       .toggleVisibility(true)
       .fadeInElements()
   }
 
-  private createLevelBar() {
+  private createLevelBar(): LevelComplete {
     const { innerHeight: windowHeight, innerWidth: windowWidth } = window
     const halfHeight = windowHeight / 2
     const halfWidth = windowWidth / 2
 
-    this.rectBackground = this.scene.add.rectangle(
-      halfWidth,
-      halfHeight,
-      windowWidth,
-      windowHeight + 20,
-      0xfff,
-      0.3
-    )
+    this.rectBackground = this.scene.add.rectangle(halfWidth, halfHeight, windowWidth, windowHeight + 20, 0xfff, 0.3)
 
-    this.rectTextBackground = this.scene.add.rectangle(
-      halfWidth,
-      halfHeight,
-      windowWidth,
-      100,
-      0x000
-    )
+    this.rectTextBackground = this.scene.add.rectangle(halfWidth, halfHeight, windowWidth, 100, 0x000)
 
-    this.textLevel = this.scene.add.text(
-      40,
-      halfHeight - 20,
-      `LEVEL ${this.level}`,
-      {
-        ...{ fontSize: 50, color: Color.green }
-      }
-    )
+    this.textLevel = this.scene.add.text(40, halfHeight - 20, `LEVEL ${this.level}`, {
+      ...{ fontSize: 50, color: Color.green },
+    })
 
-    this.textLevelComplete = this.scene.add.text(
-      300,
-      halfHeight - 20,
-      'COMPLETE',
-      {
-        ...{ fontSize: 50, color: Color.green }
-      }
-    )
+    this.textLevelComplete = this.scene.add.text(300, halfHeight - 20, 'COMPLETE', {
+      ...{ fontSize: 50, color: Color.green },
+    })
 
     this.stars[0] = this.scene.add.image(600, halfHeight, Star.full)
-    this.stars[1] = this.scene.add.image(
-      670,
-      halfHeight,
-      this.scene.quest.errors > 1 ? Star.empty : Star.full
-    )
-    this.stars[2] = this.scene.add.image(
-      740,
-      halfHeight,
-      this.scene.quest.errors >= 1 ? Star.empty : Star.full
-    )
+    this.stars[1] = this.scene.add.image(670, halfHeight, this.scene.quest.errors > 1 ? Star.empty : Star.full)
+    this.stars[2] = this.scene.add.image(740, halfHeight, this.scene.quest.errors >= 1 ? Star.empty : Star.full)
 
     return this
   }
 
-  private glueElements() {
+  private glueElements(): LevelComplete {
     this.rectBackground.setScrollFactor(0)
     this.rectTextBackground.setScrollFactor(0)
     this.textLevel.setScrollFactor(0)
@@ -95,20 +67,20 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private fadeInElements() {
+  private fadeInElements(): LevelComplete {
     const { tweens } = this.scene
 
     tweens.add({
       alpha: 0.5,
       duration: 600,
-      targets: this.rectBackground
+      targets: this.rectBackground,
     })
 
     tweens.add({
       alpha: 1,
       displayHeight: 150,
       duration: 600,
-      targets: this.rectTextBackground
+      targets: this.rectTextBackground,
     })
 
     tweens.add({
@@ -116,7 +88,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       delay: 200,
       duration: 300,
       targets: this.textLevel,
-      x: 20
+      x: 20,
     })
 
     tweens.add({
@@ -124,7 +96,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.textLevelComplete,
-      x: 255
+      x: 255,
     })
 
     tweens.add({
@@ -132,7 +104,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.stars[0],
-      x: 550
+      x: 550,
     })
 
     tweens.add({
@@ -140,7 +112,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.stars[1],
-      x: 620
+      x: 620,
     })
 
     tweens.add({
@@ -148,7 +120,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.stars[2],
-      x: 690
+      x: 690,
     })
 
     setTimeout(() => this.scene.scene.pause(), 1000)
@@ -156,7 +128,7 @@ export default class LevelComplete extends Phaser.GameObjects.GameObject {
     return this
   }
 
-  private toggleVisibility(show: boolean) {
+  private toggleVisibility(show: boolean): LevelComplete {
     if (show) {
       this.rectBackground.setAlpha(0)
       this.rectTextBackground.setAlpha(0)

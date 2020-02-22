@@ -1,15 +1,9 @@
 export default class SpeechBubble extends Phaser.GameObjects.GameObject {
   private bubble: Phaser.GameObjects.Graphics
+
   private text: Phaser.GameObjects.Text
 
-  constructor(
-    scene: Phaser.Scene,
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    quote: string
-  ) {
+  constructor(scene: Phaser.Scene, x: number, y: number, width: number, height: number, quote: string) {
     super(scene, 'SpeechBubble')
 
     this.createSpeechBubble(x, y, width, height, quote)
@@ -18,19 +12,13 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
       .destroyElements()
   }
 
-  createSpeechBubble(
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    quote: string
-  ): SpeechBubble {
+  createSpeechBubble(x: number, y: number, width: number, height: number, quote: string): SpeechBubble {
     const bubbleWidth = width
     const bubbleHeight = height
     const bubblePadding = 10
     const arrowHeight = bubbleHeight / 4
 
-    this.bubble = this.scene.add.graphics({ x: x, y: y })
+    this.bubble = this.scene.add.graphics({ x, y })
 
     //  Bubble color
     this.bubble.fillStyle(0xffffff, 1)
@@ -51,14 +39,7 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     const point3Y = Math.floor(bubbleHeight + arrowHeight)
 
     //  Bubble arrow fill
-    this.bubble.fillTriangle(
-      point1X,
-      point1Y,
-      point2X,
-      point2Y,
-      point3X,
-      point3Y
-    )
+    this.bubble.fillTriangle(point1X, point1Y, point2X, point2Y, point3X, point3Y)
     this.bubble.lineStyle(2, 0x000, 1)
     this.bubble.lineBetween(point2X, point2Y, point3X, point3Y)
     this.bubble.lineBetween(point1X, point1Y, point3X, point3Y)
@@ -66,7 +47,7 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     this.text = this.scene.add.text(0, 0, quote, {
       color: '#000000',
       align: 'center',
-      wordWrap: { width: bubbleWidth - bubblePadding * 2 }
+      wordWrap: { width: bubbleWidth - bubblePadding * 2 },
     })
 
     const bounds = this.text.getBounds()
@@ -85,7 +66,7 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
     tweens.add({
       alpha: 1,
       duration: 500,
-      targets: [this.bubble, this.text]
+      targets: [this.bubble, this.text],
     })
 
     return this
@@ -102,13 +83,13 @@ export default class SpeechBubble extends Phaser.GameObjects.GameObject {
         alpha: 0,
         duration: 500,
         onComplete: () => {
-          elementsCompleted = elementsCompleted + 2
+          elementsCompleted += 2
 
           if (elementsCompleted === numberOfElements) {
             this.toggleVisibility(false)
           }
         },
-        targets: [this.bubble, this.text]
+        targets: [this.bubble, this.text],
       })
     }, 3000)
 

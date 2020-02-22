@@ -6,9 +6,11 @@ export default class Animal extends Phaser.GameObjects.GameObject {
   private animal: string
 
   private xSpeechBubble: number
+
   private ySpeechBubble: number
 
   private speechText: string
+
   private audio: Phaser.Sound.BaseSound
 
   constructor(
@@ -33,14 +35,7 @@ export default class Animal extends Phaser.GameObjects.GameObject {
   }
 
   talk(): void {
-    new SpeechBubble(
-      this.scene,
-      this.xSpeechBubble,
-      this.ySpeechBubble - 50,
-      200,
-      35,
-      this.speechText
-    )
+    new SpeechBubble(this.scene, this.xSpeechBubble, this.ySpeechBubble - 50, 200, 35, this.speechText)
     this.audio.play()
   }
 }

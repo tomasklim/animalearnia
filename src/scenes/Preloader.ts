@@ -1,39 +1,31 @@
-import { AnimalKind, Star,Direction, AudioName, CharacterType, SceneName } from '../enums'
+import { AnimalKind, Star, Direction, AudioName, CharacterType, SceneName } from '../enums'
 
-export class Preloader extends Phaser.Scene {
+export default class Preloader extends Phaser.Scene {
   constructor() {
     super(SceneName.preloader)
   }
 
-  protected preload() {
+  protected preload(): void {
     this.loadAssets()
     this.loadSounds()
   }
 
-  protected create() {
+  protected create(): void {
     this.createAnims()
 
     this.scene.launch(SceneName.smallZooMap)
   }
 
-  private loadAssets() {
-    this.load.spritesheet(
-      CharacterType.player,
-      './assets/sprites/character-64px.png',
-      {
-        frameWidth: 64,
-        frameHeight: 64
-      }
-    )
+  private loadAssets(): void {
+    this.load.spritesheet(CharacterType.player, './assets/sprites/character-64px.png', {
+      frameWidth: 64,
+      frameHeight: 64,
+    })
 
-    this.load.spritesheet(
-      CharacterType.questGiver,
-      './assets/sprites/quest-giver-64px.png',
-      {
-        frameWidth: 64,
-        frameHeight: 64
-      }
-    )
+    this.load.spritesheet(CharacterType.questGiver, './assets/sprites/quest-giver-64px.png', {
+      frameWidth: 64,
+      frameHeight: 64,
+    })
 
     this.load.image('zoo_tiles', './assets/environment/zoo_image.png')
     this.load.tilemapTiledJSON('map', './assets/environment/zoo_map_20x25.json')
@@ -48,95 +40,59 @@ export class Preloader extends Phaser.Scene {
     this.load.image(Star.empty, './assets/others/star_empty.png')
   }
 
-  private loadSounds() {
-    this.load.audio(
-      AudioName.elephantQuest,
-      `./assets/sounds/${AudioName.elephantQuest}`
-    )
-    this.load.audio(
-      AudioName.tigerQuest,
-      `./assets/sounds/${AudioName.tigerQuest}`
-    )
-    this.load.audio(
-      AudioName.zebraQuest,
-      `./assets/sounds/${AudioName.zebraQuest}`
-    )
-    this.load.audio(
-      AudioName.giraffeQuest,
-      `./assets/sounds/${AudioName.giraffeQuest}`
-    )
-    this.load.audio(
-      AudioName.lionQuest,
-      `./assets/sounds/${AudioName.lionQuest}`
-    )
-    this.load.audio(
-      AudioName.tigerVoice,
-      `./assets/sounds/${AudioName.tigerVoice}`
-    )
-    this.load.audio(
-      AudioName.zebraVoice,
-      `./assets/sounds/${AudioName.zebraVoice}`
-    )
-    this.load.audio(
-      AudioName.lionVoice,
-      `./assets/sounds/${AudioName.lionVoice}`
-    )
-    this.load.audio(
-      AudioName.giraffeVoice,
-      `./assets/sounds/${AudioName.giraffeVoice}`
-    )
-    this.load.audio(
-      AudioName.elephantVoice,
-      `./assets/sounds/${AudioName.elephantVoice}`
-    )
-    this.load.audio(
-      AudioName.level1Welcome,
-      `./assets/sounds/${AudioName.level1Welcome}`
-    )
-    this.load.audio(
-      AudioName.Level1Complete,
-      `./assets/sounds/${AudioName.Level1Complete}`
-    )
+  private loadSounds(): void {
+    this.load.audio(AudioName.elephantQuest, `./assets/sounds/${AudioName.elephantQuest}`)
+    this.load.audio(AudioName.tigerQuest, `./assets/sounds/${AudioName.tigerQuest}`)
+    this.load.audio(AudioName.zebraQuest, `./assets/sounds/${AudioName.zebraQuest}`)
+    this.load.audio(AudioName.giraffeQuest, `./assets/sounds/${AudioName.giraffeQuest}`)
+    this.load.audio(AudioName.lionQuest, `./assets/sounds/${AudioName.lionQuest}`)
+    this.load.audio(AudioName.tigerVoice, `./assets/sounds/${AudioName.tigerVoice}`)
+    this.load.audio(AudioName.zebraVoice, `./assets/sounds/${AudioName.zebraVoice}`)
+    this.load.audio(AudioName.lionVoice, `./assets/sounds/${AudioName.lionVoice}`)
+    this.load.audio(AudioName.giraffeVoice, `./assets/sounds/${AudioName.giraffeVoice}`)
+    this.load.audio(AudioName.elephantVoice, `./assets/sounds/${AudioName.elephantVoice}`)
+    this.load.audio(AudioName.level1Welcome, `./assets/sounds/${AudioName.level1Welcome}`)
+    this.load.audio(AudioName.Level1Complete, `./assets/sounds/${AudioName.Level1Complete}`)
 
     this.load.audio(AudioName.errorSound, `./assets/sounds/${AudioName.errorSound}`)
   }
 
-  private createAnims() {
+  private createAnims(): void {
     this.anims.create({
       key: Direction.down,
       frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 0,
-        end: 3
+        end: 3,
       }),
       frameRate: 8,
-      repeat: -1
+      repeat: -1,
     })
     this.anims.create({
       key: Direction.left,
       frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 4,
-        end: 7
+        end: 7,
       }),
       frameRate: 8,
-      repeat: -1
+      repeat: -1,
     })
     this.anims.create({
       key: Direction.right,
       frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 8,
-        end: 11
+        end: 11,
       }),
       frameRate: 8,
-      repeat: -1
+      repeat: -1,
     })
     this.anims.create({
       key: Direction.up,
       frames: this.anims.generateFrameNumbers(CharacterType.player, {
         start: 12,
-        end: 15
+        end: 15,
       }),
       frameRate: 8,
-      repeat: -1
+      repeat: -1,
     })
   }
 }

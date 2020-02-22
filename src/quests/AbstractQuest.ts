@@ -1,9 +1,12 @@
 import Task from './Task'
 
-export abstract class AbstractQuest {
+export default abstract class AbstractQuest {
   public state: number
+
   public currentObjective: string
+
   public tasks: Array<Task>
+
   public errors: number
 
   constructor() {

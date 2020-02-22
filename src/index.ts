@@ -1,6 +1,6 @@
 import 'phaser'
-import { Preloader } from './scenes/Preloader'
-import { Menu } from './scenes/Menu'
+import Preloader from './scenes/Preloader'
+import Menu from './scenes/Menu'
 
 import Level1 from './scenes/Level1'
 
@@ -16,10 +16,10 @@ class PhaserGame extends Phaser.Game {
       physics: {
         default: 'arcade',
         arcade: {
-          gravity: { y: 0 }
+          gravity: { y: 0 },
           // debug: true
-        }
-      }
+        },
+      },
     }
     super(config)
   }

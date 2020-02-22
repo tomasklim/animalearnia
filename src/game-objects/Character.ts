@@ -1,4 +1,4 @@
-import { AbstractScene } from '../scenes/AbstractScene'
+import AbstractScene from '../scenes/AbstractScene'
 
 export interface KeyboardKeys {
   down?: Phaser.Input.Keyboard.Key
@@ -14,9 +14,13 @@ export interface KeyboardKeys {
 
 export abstract class Character {
   protected scene: AbstractScene
+
   protected keys: KeyboardKeys
+
   protected x: number
+
   protected y: number
+
   public sprite: Phaser.Physics.Arcade.Sprite
 
   constructor(scene: AbstractScene, x: number, y: number) {

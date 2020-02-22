@@ -1,5 +1,5 @@
 import Task from './Task'
-import { AbstractQuest } from './AbstractQuest'
+import AbstractQuest from './AbstractQuest'
 import { AnimalKind, AudioName, CharacterType } from '../enums'
 
 export default class Level1Quest extends AbstractQuest {
@@ -11,15 +11,7 @@ export default class Level1Quest extends AbstractQuest {
 
   defineQuests(): void {
     this.tasks.push(
-      new Task(
-        'Meet the Quest Giver',
-        '',
-        '',
-        CharacterType.questGiver,
-        CharacterType.questGiver,
-        null,
-        true
-      )
+      new Task('Meet the Quest Giver', '', '', CharacterType.questGiver, CharacterType.questGiver, null, true),
     )
     this.tasks.push(
       new Task(
@@ -27,15 +19,9 @@ export default class Level1Quest extends AbstractQuest {
         'Welcome to the Zoo!\nLook around here.',
         '',
         CharacterType.questGiver,
-        [
-          AnimalKind.elephant,
-          AnimalKind.giraffe,
-          AnimalKind.lion,
-          AnimalKind.zebra,
-          AnimalKind.tiger
-        ],
-        AudioName.level1Welcome
-      )
+        [AnimalKind.elephant, AnimalKind.giraffe, AnimalKind.lion, AnimalKind.zebra, AnimalKind.tiger],
+        AudioName.level1Welcome,
+      ),
     )
     this.tasks.push(
       new Task(
@@ -44,8 +30,8 @@ export default class Level1Quest extends AbstractQuest {
         'Nicely done!',
         CharacterType.questGiver,
         AnimalKind.elephant,
-        AudioName.elephantQuest
-      )
+        AudioName.elephantQuest,
+      ),
     )
     this.tasks.push(
       new Task(
@@ -54,8 +40,8 @@ export default class Level1Quest extends AbstractQuest {
         'Perfect!',
         CharacterType.questGiver,
         AnimalKind.lion,
-        AudioName.lionQuest
-      )
+        AudioName.lionQuest,
+      ),
     )
     this.tasks.push(
       new Task(
@@ -64,8 +50,8 @@ export default class Level1Quest extends AbstractQuest {
         'Uff, thank you!',
         CharacterType.questGiver,
         AnimalKind.zebra,
-        AudioName.zebraQuest
-      )
+        AudioName.zebraQuest,
+      ),
     )
     this.tasks.push(
       new Task(
@@ -74,8 +60,8 @@ export default class Level1Quest extends AbstractQuest {
         'Good job!',
         CharacterType.questGiver,
         AnimalKind.tiger,
-        AudioName.tigerQuest
-      )
+        AudioName.tigerQuest,
+      ),
     )
     this.tasks.push(
       new Task(
@@ -84,8 +70,8 @@ export default class Level1Quest extends AbstractQuest {
         'Last one!',
         CharacterType.questGiver,
         AnimalKind.giraffe,
-        AudioName.giraffeQuest
-      )
+        AudioName.giraffeQuest,
+      ),
     )
   }
 }

@@ -1,21 +1,22 @@
-import { SceneName } from "../enums"
+import { SceneName } from '../enums'
 
-export class Menu extends Phaser.Scene {
+export default class Menu extends Phaser.Scene {
   public playButton: Phaser.GameObjects.Text
+
   public spaceBar: Phaser.Input.Keyboard.Key
 
-  protected preload() {
+  protected preload(): void {
     this.load.image('menu', './assets/scenes/menu.png')
   }
 
-  protected create() {
+  protected create(): void {
     this.add.image(0, 0, 'menu').setOrigin(0)
 
     this.playButton = this.add
       .text(340, 280, 'PLAY', {
         fill: '#f68a24',
         fontSize: '60px',
-        fontFamily: '"Acumin Pro"'
+        fontFamily: '"Acumin Pro"',
       })
       .setInteractive()
 
@@ -24,28 +25,26 @@ export class Menu extends Phaser.Scene {
       .on('pointerover', () => this.enterButtonHoverState())
       .on('pointerout', () => this.enterButtonRestState())
 
-    const camera = this.cameras.main
+    this.cameras.main
 
-    this.spaceBar = this.input.keyboard.addKey(
-      Phaser.Input.Keyboard.KeyCodes.SPACE
-    )
+    this.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
   }
 
-  update() {
+  update(): void {
     if (this.spaceBar.isDown) {
       this.play()
     }
   }
 
-  enterButtonRestState() {
+  enterButtonRestState(): void {
     this.playButton.setStyle({ fill: '#f68a24' })
   }
 
-  enterButtonHoverState() {
+  enterButtonHoverState(): void {
     this.playButton.setStyle({ fill: '#ecc66a' })
   }
 
-  play() {
+  play(): void {
     this.scene.start(SceneName.preloader)
   }
 }

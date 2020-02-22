@@ -1,6 +1,6 @@
 export enum SceneName {
   smallZooMap = 'small_zoo_map',
-  preloader = 'preloader'
+  preloader = 'preloader',
 }
 
 export enum Color {
@@ -8,14 +8,14 @@ export enum Color {
   black = '#000',
   green = '#1eb960',
   orange = '#F9A602',
-  red = '#ff0000'
+  red = '#ff0000',
 }
 
 export enum Direction {
   down = 'down',
   up = 'up',
   left = 'left',
-  right = 'right'
+  right = 'right',
 }
 
 export enum AnimalKind {
@@ -23,12 +23,12 @@ export enum AnimalKind {
   tiger = 'tiger',
   elephant = 'elephant',
   lion = 'lion',
-  zebra = 'zebra'
+  zebra = 'zebra',
 }
 
 export enum Star {
   empty = 'empty',
-  full = 'full'
+  full = 'full',
 }
 
 export enum AudioName {
@@ -44,17 +44,17 @@ export enum AudioName {
   giraffeVoice = 'Giraffe-voice.mp3',
   tigerVoice = 'Tiger-voice.mp3',
   lionVoice = 'Lion-voice.mp3',
-  errorSound = 'Error.mp3'
+  errorSound = 'Error.mp3',
 }
 
 export enum CharacterType {
   player = 'player',
-  questGiver = 'quest_giver'
+  questGiver = 'quest_giver',
 }
 
 export enum QuestGiverState {
   newQuest = 0,
   incompleteQuest,
   completeQuest,
-  noQuest
+  noQuest,
 }

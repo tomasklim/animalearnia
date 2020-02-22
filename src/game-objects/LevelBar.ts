@@ -1,8 +1,10 @@
 export default class LevelBar extends Phaser.GameObjects.GameObject {
   private rectBackground: Phaser.GameObjects.Rectangle
+
   private rectTextBackground: Phaser.GameObjects.Rectangle
 
   private textLevel: Phaser.GameObjects.Text
+
   private textLevelNumber: Phaser.GameObjects.Text
 
   private level: number
@@ -29,35 +31,17 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     const halfHeight = windowHeight / 2
     const halfWidth = windowWidth / 2
 
-    this.rectBackground = this.scene.add.rectangle(
-      halfWidth,
-      halfHeight,
-      windowWidth,
-      windowHeight + 20,
-      0xfff,
-      0.3
-    )
+    this.rectBackground = this.scene.add.rectangle(halfWidth, halfHeight, windowWidth, windowHeight + 20, 0xfff, 0.3)
 
-    this.rectTextBackground = this.scene.add.rectangle(
-      halfWidth,
-      halfHeight,
-      windowWidth,
-      100,
-      0x000
-    )
+    this.rectTextBackground = this.scene.add.rectangle(halfWidth, halfHeight, windowWidth, 100, 0x000)
 
     this.textLevel = this.scene.add.text(40, halfHeight - 20, 'LEVEL', {
-      ...{ fontSize: 70 }
+      ...{ fontSize: 70 },
     })
 
-    this.textLevelNumber = this.scene.add.text(
-      300,
-      halfHeight - 30,
-      `${this.level}`,
-      {
-        ...{ fontSize: 90 }
-      }
-    )
+    this.textLevelNumber = this.scene.add.text(300, halfHeight - 30, `${this.level}`, {
+      ...{ fontSize: 90 },
+    })
 
     return this
   }
@@ -77,14 +61,14 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     tweens.add({
       alpha: 0.5,
       duration: 600,
-      targets: this.rectBackground
+      targets: this.rectBackground,
     })
 
     tweens.add({
       alpha: 1,
       displayHeight: 150,
       duration: 600,
-      targets: this.rectTextBackground
+      targets: this.rectTextBackground,
     })
 
     tweens.add({
@@ -92,7 +76,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
       delay: 200,
       duration: 300,
       targets: this.textLevel,
-      x: 20
+      x: 20,
     })
 
     tweens.add({
@@ -100,7 +84,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
       delay: 400,
       duration: 300,
       targets: this.textLevelNumber,
-      x: 250
+      x: 250,
     })
 
     return this
@@ -124,7 +108,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
           }
         },
         targets: this.textLevelNumber,
-        x: 300
+        x: 300,
       })
 
       tweens.add({
@@ -139,7 +123,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
           }
         },
         targets: this.textLevel,
-        x: 40
+        x: 40,
       })
 
       tweens.add({
@@ -153,7 +137,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
           }
         },
         targets: this.rectBackground,
-        alpha: 0
+        alpha: 0,
       })
 
       tweens.add({
@@ -168,7 +152,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
             this.toggleVisibility(false)
           }
         },
-        targets: this.rectTextBackground
+        targets: this.rectTextBackground,
       })
     }, 2000)
 
@@ -184,7 +168,7 @@ export default class LevelBar extends Phaser.GameObjects.GameObject {
     }, 4000)
   }
 
-  private toggleVisibility(show: boolean) {
+  private toggleVisibility(show: boolean): LevelBar {
     if (show) {
       this.rectBackground.setAlpha(0)
       this.rectTextBackground.setAlpha(0)

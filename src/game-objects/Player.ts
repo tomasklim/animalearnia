@@ -1,23 +1,13 @@
 import * as CONFIG from '../config'
 import { Character } from './Character'
 import LevelComplete from './LevelComplete'
-import { AbstractScene } from '../scenes/AbstractScene'
-import {
-  Direction,
-  AudioName,
-  CharacterType,
-  QuestGiverState
-} from '../enums'
+import AbstractScene from '../scenes/AbstractScene'
+import { Direction, AudioName, CharacterType, QuestGiverState } from '../enums'
 
-export default class player extends Character {
+export default class Player extends Character {
   private interactiveAreas: Phaser.Physics.Arcade.Image[]
 
-  constructor(
-    scene: AbstractScene,
-    x: number,
-    y: number,
-    interactiveAreas: Phaser.Physics.Arcade.Image[]
-  ) {
+  constructor(scene: AbstractScene, x: number, y: number, interactiveAreas: Phaser.Physics.Arcade.Image[]) {
     super(scene, x, y)
 
     this.interactiveAreas = interactiveAreas
@@ -28,9 +18,7 @@ export default class player extends Character {
       .setOffset(12, 42)
       .setTexture(CharacterType.player, 4)
 
-    this.keys = this.scene.input.keyboard.addKeys(
-      'W,S,A,D,up,down,left,right,space'
-    )
+    this.keys = this.scene.input.keyboard.addKeys('W,S,A,D,up,down,left,right,space')
   }
 
   update(): void {
@@ -70,10 +58,7 @@ export default class player extends Character {
       }
     }
 
-    if (
-      Phaser.Input.Keyboard.JustDown(keys.space) &&
-      quest.state < quest.tasks.length
-    ) {
+    if (Phaser.Input.Keyboard.JustDown(keys.space) && quest.state < quest.tasks.length) {
       const collisionArea = this.findCollisionArea()
 
       if (collisionArea) {
@@ -83,60 +68,42 @@ export default class player extends Character {
 
         const currentQuest = quest.tasks[quest.state]
 
-        if (currentQuest.giver == collisionArea.name && currentQuest.complete) {
+        if (currentQuest.giver === collisionArea.name && currentQuest.complete) {
           quest.state++
           if (quest.state === quest.tasks.length) {
             this.scene.questGiver.changeSpriteType(QuestGiverState.noQuest)
             this.scene.complete = true
-            this.scene.questGiver.talk(
-              'Level 1 is complete.\n See you in level 2!',
-              240,
-              AudioName.Level1Complete
-            )
+            this.scene.questGiver.talk('Level 1 is complete.\n See you in level 2!', 240, AudioName.Level1Complete)
             setTimeout(() => {
               this.scene.levelComplete = new LevelComplete(this.scene, 1)
             }, 2000)
           } else {
-            this.scene.questGiver.changeSpriteType(
-              QuestGiverState.incompleteQuest
-            )
+            this.scene.questGiver.changeSpriteType(QuestGiverState.incompleteQuest)
             this.scene.questGiver.talk(
-              `${
-                quest.tasks[quest.state].questCompleteText
-                  ? `${quest.tasks[quest.state].questCompleteText}\n`
-                  : ''
-              }${quest.tasks[quest.state].questGiverText}`,
+              `${quest.tasks[quest.state].questCompleteText ? `${quest.tasks[quest.state].questCompleteText}\n` : ''}${
+                quest.tasks[quest.state].questGiverText
+              }`,
               240,
-              quest.tasks[quest.state].sound
+              quest.tasks[quest.state].sound,
             )
           }
-        } else if (
-          typeof currentQuest.goalTarget === 'object' &&
-          collisionArea.name != CharacterType.questGiver
-        ) {
+        } else if (typeof currentQuest.goalTarget === 'object' && collisionArea.name !== CharacterType.questGiver) {
           const counter = currentQuest.goalTarget.length
-          // @ts-ignore
-          currentQuest.goalTarget = currentQuest.goalTarget.filter(
-            goalTarget => goalTarget !== collisionArea.name
-          )
-          if (counter != currentQuest.goalTarget.length) {
+          currentQuest.goalTarget = currentQuest.goalTarget.filter(goalTarget => goalTarget !== collisionArea.name)
+          if (counter !== currentQuest.goalTarget.length) {
             currentQuest.goalStatus++
           }
           if (!currentQuest.goalTarget.length) {
             currentQuest.complete = true
-            this.scene.questGiver.changeSpriteType(
-              QuestGiverState.completeQuest
-            )
+            this.scene.questGiver.changeSpriteType(QuestGiverState.completeQuest)
           }
-        } else if (currentQuest.goalTarget == collisionArea.name) {
+        } else if (currentQuest.goalTarget === collisionArea.name) {
           currentQuest.complete = true
           currentQuest.goalStatus++
           this.scene.questGiver.changeSpriteType(QuestGiverState.completeQuest)
-        } else {
-          if (collisionArea.name !== CharacterType.questGiver) {
-            quest.errors++
-            this.scene.sound.add(AudioName.errorSound, { volume: 0.1 }).play()
-          }
+        } else if (collisionArea.name !== CharacterType.questGiver) {
+          quest.errors++
+          this.scene.sound.add(AudioName.errorSound, { volume: 0.1 }).play()
         }
 
         this.scene.questBar.update()
@@ -145,8 +112,6 @@ export default class player extends Character {
   }
 
   findCollisionArea(): Phaser.Physics.Arcade.Image {
-    return this.interactiveAreas.find(area =>
-      this.scene.physics.overlap(this.sprite, area)
-    )
+    return this.interactiveAreas.find(area => this.scene.physics.overlap(this.sprite, area))
   }
 }

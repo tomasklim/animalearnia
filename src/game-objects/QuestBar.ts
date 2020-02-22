@@ -1,12 +1,17 @@
-import { AbstractQuest } from '../quests/AbstractQuest'
-import {Color} from '../enums'
+import AbstractQuest from '../quests/AbstractQuest'
+import { Color } from '../enums'
 
 export default class QuestBar extends Phaser.GameObjects.GameObject {
   private quest: AbstractQuest
+
   private questBar: Phaser.GameObjects.Rectangle
+
   private questText: Phaser.GameObjects.Text
+
   private questStatus: Phaser.GameObjects.Text
+
   private questCounter: Phaser.GameObjects.Text
+
   private errorsCounter: Phaser.GameObjects.Text
 
   constructor(scene: Phaser.Scene, quest: AbstractQuest) {
@@ -26,30 +31,23 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
       .setStrokeStyle(2, 0x000)
       .setOrigin(0)
 
-    this.questText = this.scene.add.text(
-      580,
-      20,
-      this.quest.tasks[this.quest.state].objective,
-      { color: '#000' }
-    )
+    this.questText = this.scene.add.text(580, 20, this.quest.tasks[this.quest.state].objective, { color: '#000' })
 
     this.questCounter = this.scene.add.text(
       580,
       40,
-      `${this.quest.tasks[this.quest.state].goalStatus} / ${
-        this.quest.tasks[this.quest.state].goalTotal
-      }`,
+      `${this.quest.tasks[this.quest.state].goalStatus} / ${this.quest.tasks[this.quest.state].goalTotal}`,
       {
-        color: '#F9A602'
-      }
+        color: '#F9A602',
+      },
     )
 
-    this.errorsCounter = this.scene.add.text(700, 40, `0 Errors`, {
-      color: '#FF0000'
+    this.errorsCounter = this.scene.add.text(700, 40, '0 Errors', {
+      color: '#FF0000',
     })
 
     this.questStatus = this.scene.add.text(580, 60, 'In progress', {
-      color: '#F9A602'
+      color: '#F9A602',
     })
 
     return this
@@ -76,15 +74,11 @@ export default class QuestBar extends Phaser.GameObjects.GameObject {
       if (currentTask.complete) {
         this.questStatus.setText('Complete')
         this.questStatus.setColor(Color.green)
-        this.questCounter
-          .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor(Color.green)
+        this.questCounter.setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`).setColor(Color.green)
       } else {
         this.questStatus.setText('In progress')
         this.questStatus.setColor(Color.orange)
-        this.questCounter
-          .setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`)
-          .setColor(Color.orange)
+        this.questCounter.setText(`${currentTask.goalStatus} / ${currentTask.goalTotal}`).setColor(Color.orange)
       }
     } else if (this.quest.state >= this.quest.tasks.length) {
       this.questText.setText('No quest')
