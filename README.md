@@ -1,6 +1,8 @@
 # Animalearnia
 RPG level based game where the objective of each level is to learn different types of animals. The game uses game based learning principles.
 
+DEMO: https://tomasklim.github.io/animalearnia/
+
 ##### Technologies used:
 - PhaserJS 
 - Webpack
